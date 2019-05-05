@@ -4,3 +4,6 @@
 [submodule "cs-roofline-toolkit"]
 	path = cs-roofline-toolkit
 	url = https://bitbucket.org/berkeleylab/cs-roofline-toolkit.git
+[submodule "CloverLeaf"]
+	path = CloverLeaf
+	url = https://github.com/UK-MAC/CloverLeaf.git
