@@ -1,0 +1,10 @@
+memroofs 21000.0 9961.2 1171.5 224.1
+mem_roof_names 'L1' 'L2' 'L3' 'DRAM'
+comproofs 2801.2 1400.3
+comp_roof_names 'DP Vector FMA Peak' DP Vector Add Peak'
+
+# omit the following if only plotting roofs
+AI 2.584785579
+FLOPS 2085.756683
+labels 'CloverLeaf w/OpenMP and Vectorization' 'CloverLeaf Serial'
+

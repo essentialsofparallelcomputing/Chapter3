@@ -1,0 +1,44 @@
+The listings 3.1 and 3.2 are just snippets and can't be run
+
+The code in this directory is for command line examples (not listings)
+
+Roofline toolkit
+
+   cd roofline_toolkit
+   cd cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0
+   cp Config/config.madonna.lbl.gov.01 Config/MacLaptop2017
+   edit Config/MacLaptop2017
+   Run the tests with ./ert Config/MacLaptop2017
+   View Results.MacLaptop2017/Run.001/roofline.ps
+   
+Call-graph
+   Need Valgrind and Callgrind
+
+   cd into Call-graph directory
+
+   run callgraph.sh
+
+Likwid-perfctr
+
+   Need Likwid and CloverLeaf
+
+   cd into likwid-perfctr
+
+   run likwid_perfctr.sh
+
+Jupyter notebook
+
+   Need python3, numpy, scipy, matplotlib, and jupyter
+
+   cd jupyter
+
+   Start up jupyter notebook
+
+      jupyter notebook HardwarePlatformCharacterization.ipynb
+
+   Run the notebook
+
+plot_roofline
+
+   cd plot_roofline
+   python2 plot_roofline.py
