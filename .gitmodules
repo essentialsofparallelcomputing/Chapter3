@@ -1,0 +1,3 @@
+[submodule "STREAM"]
+	path = STREAM
+	url = git@github.com:jeffhammond/STREAM.git
