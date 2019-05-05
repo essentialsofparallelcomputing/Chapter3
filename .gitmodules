@@ -1,3 +1,6 @@
 [submodule "STREAM"]
 	path = STREAM
 	url = https://github.com/jeffhammond/STREAM.git
+[submodule "cs-roofline-toolkit"]
+	path = cs-roofline-toolkit
+	url = https://bitbucket.org/berkeleylab/cs-roofline-toolkit.git
