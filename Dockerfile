@@ -8,7 +8,7 @@ RUN cd Chapter3/STREAM && cp Makefile Makefile.orig && \
   -e '1,$s/gcc-4.9/gcc/' Makefile.orig > Makefile && make stream_c.exe && cd ../..
 
 RUN alias python=python3
-RUN cd Chapter3/cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0 && cp ../../MacLaptop2017 Config && cd ../../..
+RUN cd Chapter3/cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0 && cp ../../roofline_toolkit/MacLaptop2017 Config && cd ../../..
 
 RUN cd Chapter3/CloverLeaf/CloverLeaf_Serial && \
     make CC=gcc COMPILER=GNU IEEE=1 C_OPTIONS='-g -fno-tree-vectorize' OPTIONS='-g -fno-tree-vectorize' && \
