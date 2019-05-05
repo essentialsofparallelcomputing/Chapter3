@@ -7,6 +7,3 @@
 [submodule "CloverLeaf"]
 	path = CloverLeaf
 	url = https://github.com/UK-MAC/CloverLeaf.git
-[submodule "nersc-roofline"]
-	path = nersc-roofline
-	url = https://github.com/cyanguwa/nersc-roofline.git
