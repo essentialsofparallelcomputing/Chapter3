@@ -1,0 +1,13 @@
+To run the example in docker, do the following
+
+Download the docker install file for your system
+
+For the pre-built docker image, run
+
+   docker run -p 4000:80 -it --entrypoint /bin/bash essentialsofparallelcomputing/chapter3
+
+Alternatively, build an image locally and run it 
+
+   docker build -t chapter3 .
+
+   docker run -it --entrypoint /bin/bash chapter3
