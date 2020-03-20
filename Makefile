@@ -18,15 +18,14 @@ CloverLeaf_Serial: CloverLeaf/CloverLeaf_Serial/clover_leaf
 CloverLeaf/CloverLeaf_Serial/clover_leaf:
 	cd CloverLeaf/CloverLeaf_Serial; \
 	     make COMPILER=GNU C_MPI_COMPILER_GNU=${CC} IEEE=1 C_OPTIONS='-g -fno-tree-vectorize' OPTIONS='-g -fno-tree-vectorize' && \
-	     cp InputDecks/clover_bm256_short.in clover.in;\
-	     ./clover_leaf
+	     cp InputDecks/clover_bm256_short.in clover.in; #./clover_leaf
 
 CloverLeaf_OpenMP: CloverLeaf/CloverLeaf_OpenMP/clover_leaf
 
 CloverLeaf/CloverLeaf_OpenMP/clover_leaf:
 	cd CloverLeaf/CloverLeaf_OpenMP; \
 	     make COMPILER=GNU C_MPI_COMPILER_GNU=${CC} IEEE=1 C_OPTIONS='-g -march=native' OPTIONS='-g -march=native' && \
-	     cp InputDecks/clover_bm256_short.in clover.in; ./clover_leaf
+	     cp InputDecks/clover_bm256_short.in clover.in;  #./clover_leaf
 
 Plotting: nersc-roofline/Plotting/plot_roofline.py.orig
 
