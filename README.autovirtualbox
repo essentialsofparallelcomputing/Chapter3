@@ -1,0 +1,78 @@
+# These are instructions to setup a Ubuntu virtual machine for the examples in
+# this chapter. The first part of the instructions must be done manually. The
+# last half can be done by executing this file as a script as instructed.
+
+# Download VirtualBox and install
+
+# Download Ubuntu desktop install and save on local disk [ubuntu-18.04.2-desktop-amd64.iso]
+# Download VBoxGuestAdditions.iso
+# On Mac already at /Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso
+
+# Setup new machine
+# A couple of options for this
+#    1. Use the autovirtualbox.sh script to setup a virtual machine
+#       a. Review the autovirtualbox.sh and modify as needed for your system
+#       b. Run the autovirtualbox.sh
+#    2. Follow the steps below
+
+# Click on New
+
+# Type in a name [chapter3]
+# Select Linux and Ubuntu 64-bit
+
+# Select the amount of memory [4096]
+
+# Create a virtual hard disk now
+# Select VDI VirtualBox Disk Image
+
+# Select Fixed Size Disk
+# Select 10 GB
+
+# Should see the new virtual machine added to the list
+
+# Start Ubuntu virtual machine (Green arrow, start)
+
+# Select iso file saved earlier [ubuntu-18.04.2-desktop-amd64.iso]
+
+# Select Install Ubuntu
+
+# Keyboard -- continue
+
+# Select minimal, download updates while installing and install third-party
+
+# Select Erase disk and install Ubuntu
+# Select Install Now
+
+# Select timezone
+
+# Your name [chapter3]
+# Your computer's name [chapter3-virtualbox]
+# Username [chapter3]
+# password [chapter3]
+# Select "Require my password to log in"
+
+# Select continue
+
+# Long time ....
+
+# Installation is complete, Restart computer
+
+# sign in
+
+# click through whats new
+
+# select dots at bottom left and terminal
+
+# sudo apt-get update
+# sudo apt-get install -y build-essential dkms git
+# Now go up to devices and insert virtualbox-guest-additions-iso
+
+# Make virtualbox window active and select devices from window menus at top of screen
+#     Shared Clipboard --> bidirectional
+#     Drag and Drop --> bidirectional
+#     Install guest additions
+#     Remove optical disk -- from desktop, right click and eject or from devices-->optical disk-->remove disk from virtual drive
+#     reboot and test copy paste
+# Copy on Mac is command-C and paste in Ubuntu is shift-ctrl-v
+
+# Reboot to get cut and paste and screen size fixed

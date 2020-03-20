@@ -1,90 +1,54 @@
+# These are instructions to setup a Ubuntu virtual machine for the examples in
+# this chapter. The first part of the instructions must be done manually. The
+# last half can be done by executing this file as a script as instructed.
 
-Download VirtualBox and install
+# Download VirtualBox and install
 
-Download Ubuntu desktop install and save on local disk [ubuntu-18.04.2-desktop-amd64.iso]
+# Download Ubuntu desktop install and save on local disk [ubuntu-18.04.2-desktop-amd64.iso]
+# Download VBoxGuestAdditions.iso
+# On Mac already at /Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso
 
-Setup new machine
+# Setup new machine
+# See the README.autovirtualbox script for directions for setting up base virtual machine
 
-Click on New
+# sign in
 
-Type in a name [chapter3]
-Select Linux and Ubuntu 64-bit
+# click through whats new
 
-Select the amount of memory [4096]
+# select dots at bottom left and terminal
 
-Create a virtual hard disk now
-Select VDI VirtualBox Disk Image
+# Reboot to get cut and paste and screen size fixed
 
-Select Fixed Size Disk
-Select 10 GB
+# Add user to sudo list if needed
+# su
+# visudo
+# add %vboxsf ALL=(ALL) ALL
+# exit
 
-Should see the new virtual machine added to the list
+# sudo apt-get install -y git
 
-Start Ubuntu virtual machine (Green arrow, start)
+# Need script on guest to execute
+# git clone --recursive https://github.com/essentialsofparallelcomputing/Chapter3.git
 
-Select iso file saved earlier [ubuntu-18.04.2-desktop-amd64.iso]
+sudo apt-get update && \
+sudo apt-get install -y cmake git vim gcc g++ gfortran software-properties-common \
+             python3 gnuplot-qt valgrind kcachegrind graphviz likwid && \
+sudo apt-get clean && \
+sudo rm -rf /var/lib/apt/lists/*
 
-Select Install Ubuntu
+# Installing latest GCC compiler (version 9) for best vectorization
+sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+sudo apt-get update && \
+sudo apt-get install -y gcc-9 g++-9 gfortran-9 && \
+sudo apt-get clean && \
+sudo rm -rf /var/lib/apt/lists/*
 
-Keyboard -- continue
-
-Select minimal, download updates while installing and install third-party
-
-Select Erase disk and install Ubuntu
-Select Install Now
-
-Select timezone
-
-Your name [chapter3]
-Your computer's name [chapter3-virtualbox]
-Username [chapter3]
-password [chapter3]
-Select "Require my password to log in"
-
-Select continue
-
-Long time ....
-
-Installation is complete, Restart computer
-
-sign in
-
-click through whats new
-
-select dots at bottom left and terminal
-
-sudo apt-get update
-sudo apt-get install gcc make
+sudo update-alternatives --install /usr/bin/gcc       gcc       /usr/bin/gcc-9 90 \
+                         --slave   /usr/bin/g++       g++       /usr/bin/g++-9 \
+                         --slave   /usr/bin/gfortran  gfortran  /usr/bin/gfortran-9 \
+                         --slave   /usr/bin/gcov      gcov      /usr/bin/gcov-9
 
 If Software updater prompts, install updated software --> wait ....
 
-Make virtualbox window active and select devices from window menus at top of screen
-    Shared Clipboard --> bidirectional
-    Drag and Drop --> bidirectional
-    Install guest additions
-    Remove optical disk -- from desktop, right click and eject or from devices-->optical disk-->remove disk from virtual drive
-    reboot and test copy paste
-Copy on Mac is command-C and paste in Ubuntu is shift-ctrl-v
 
-sudo apt-get install -y bash cmake git vim gfortran python3 gnuplot-qt valgrind kcachegrind graphviz likwid
-
-git clone https://github.com/essentialsofparallelcomputing/Chapter3.git
-
-cd Chapter3/STREAM && cp Makefile Makefile.orig && \
-  sed -e '1,$s/CFLAGS = -O2 -fopenmp/CFLAGS = -O3 -march=native -fstrict-aliasing -ftree-vectorize -fopenmp -DSTREAM_ARRAY_SIZE=80000000 -DNTIMES=20/' \
-  -e '1,$s/gcc-4.9/gcc/' Makefile.orig > Makefile && make stream_c.exe && cd ../..
-
-alias python=python3
-cd Chapter3/cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0 && cp ../../roofline_toolkit/MacLaptop2017 Config && cd ../../..
-
-cd Chapter3/CloverLeaf/CloverLeaf_Serial && \
-    make CC=gcc COMPILER=GNU IEEE=1 C_OPTIONS='-g -fno-tree-vectorize' OPTIONS='-g -fno-tree-vectorize' && \
-    cp InputDecks/clover_bm256_short.in clover.in && cd ../../..
-
-cd Chapter3/CloverLeaf/CloverLeaf_OpenMP && \
-    make CC=gcc COMPILER=GNU IEEE=1 C_OPTIONS='-g -march=native' OPTIONS='-g -march=native' && \
-    cp InputDecks/clover_bm256_short.in clover.in && cd ../../..
-
-cd Chapter3/nersc-roofline/Plotting && cp data.txt data.txt.orig && \
-    sed -e '/memroofs/s/828.758/21000.0/' -e '/mem_roof_names/s/HBM/L1/' data.txt.orig > data.txt && \
-    cp plot_roofline.py plot_roofline.py.orig && sed -e '/plt.show/s/^/#/' && cd ../../..
+cd Chapter3; make
