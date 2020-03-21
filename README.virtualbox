@@ -29,6 +29,7 @@
 
 # Need script on guest to execute
 # git clone --recursive https://github.com/essentialsofparallelcomputing/Chapter3.git
+# Run the script Chapter3/README.virtualbox
 
 sudo apt-get update && \
 sudo apt-get install -y cmake git vim gcc g++ gfortran software-properties-common \
@@ -49,6 +50,5 @@ sudo update-alternatives --install /usr/bin/gcc       gcc       /usr/bin/gcc-9 9
                          --slave   /usr/bin/gcov      gcov      /usr/bin/gcov-9
 
 If Software updater prompts, install updated software --> wait ....
-
 
 cd Chapter3; make
