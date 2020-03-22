@@ -13,14 +13,17 @@ VBoxManage modifyvm ${PROJECT_NAME} --graphicscontroller vmsvga
 VBoxManage modifyvm ${PROJECT_NAME} --usbohci on
 VBoxManage modifyvm ${PROJECT_NAME} --draganddrop bidirectional
 VBoxManage modifyvm ${PROJECT_NAME} --clipboard bidirectional
+VBoxManage modifyvm ${PROJECT_NAME} --accelerate3d on
 
 VBoxManage createmedium --filename "${VM_LOCATION}"/${PROJECT_NAME}/${PROJECT_NAME}.vdi --size 51200
 
 VBoxManage storagectl ${PROJECT_NAME} --name IDE --add ide
-VBoxManage storageattach ${PROJECT_NAME} --storagectl IDE --port 0 --device 0 --type dvddrive --medium ${UBUNTU1804_ISO}
+VBoxManage storageattach ${PROJECT_NAME} --storagectl IDE --port 0 --device 0 --type dvddrive \
+   --medium ${UBUNTU1804_ISO}
 
 VBoxManage storagectl ${PROJECT_NAME} --name SATA --add SATA --controller IntelAhci --hostiocache on
-VBoxManage storageattach ${PROJECT_NAME} --storagectl SATA --port 0 --device 0 --type hdd --medium "${VM_LOCATION}"/${PROJECT_NAME}/${PROJECT_NAME}.vdi
+VBoxManage storageattach ${PROJECT_NAME} --storagectl SATA --port 0 --device 0 --type hdd \
+   --medium "${VM_LOCATION}"/${PROJECT_NAME}/${PROJECT_NAME}.vdi
 
 VBoxManage unattended install ${PROJECT_NAME} \
    --user=${GUEST_USERNAME} \

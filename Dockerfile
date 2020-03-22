@@ -34,6 +34,6 @@ WORKDIR /home/chapter3
 ENV alias python=python3
 
 WORKDIR /home/chapter3/Chapter3
-RUN make
+#RUN make
 
 ENTRYPOINT ["bash"]

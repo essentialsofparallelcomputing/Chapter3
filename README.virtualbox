@@ -51,4 +51,4 @@ sudo update-alternatives --install /usr/bin/gcc       gcc       /usr/bin/gcc-9 9
 
 If Software updater prompts, install updated software --> wait ....
 
-cd Chapter3; make
+cd Chapter3; #make
