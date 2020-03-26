@@ -20,13 +20,13 @@
 # Type in a name [chapter3]
 # Select Linux and Ubuntu 64-bit
 
-# Select the amount of memory [4096]
+# Select the amount of memory [8192]
 
 # Create a virtual hard disk now
 # Select VDI VirtualBox Disk Image
 
 # Select Fixed Size Disk
-# Select 10 GB
+# Select 50 GB
 
 # Should see the new virtual machine added to the list
 
