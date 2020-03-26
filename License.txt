@@ -1,0 +1,18 @@
+# Chapter 3 Performance limits and profiling
+This is from Chapter 3 of the Parallel and High Performance Computing, Robey and Zamora,
+Manning Publications. The book may be obtained at
+   http://www.manning.com/?a_aid=ParallelComputingRobey
+
+Copyright 2019 Robert Robey, Yuliana Zamora, and Manning Publications
+Emails: brobey@earthlink.net, yzamora215@gmail.com
+
+You may contact us or Manning publications for any questions on the use
+of this software. 
+
+The software written for the book is distributed under the Apache License, Version 2
+
+Please observe the licenses and copyrights of the many software products and 
+software projects used in these examples. All commercial products are the
+property of their respective organizations.
+
+See the LICENSE file for the details of the Apache 2 License.
