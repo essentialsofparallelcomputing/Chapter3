@@ -1,13 +1,50 @@
-To run the example in docker, do the following
+# This docker build sets up the following software
+#    GCC, G++, GFortran 9.0 compilers
+#    Intel C, C++, and Fortran compilers
+#    Intel Advisor (Vectorization)
+#    Cachegrind and valgrind
+#    OpenMPI and MPICH
+#    likwid
 
-Download the docker install file for your system
+# To run the example in docker, do the following
 
-For the pre-built docker image, run
+# Download the docker install file for your system
+
+# For the pre-built docker image, run
 
    docker run -p 4000:80 -it --entrypoint /bin/bash essentialsofparallelcomputing/chapter3
 
-Alternatively, build an image locally and run it 
+# Alternatively, build an image locally and run it 
 
    docker build -t chapter3 .
 
    docker run -it --entrypoint /bin/bash chapter3
+
+# For Intel products, you will have to source the following script to set the environment
+#   once you are in the container
+
+   source /opt/intel/inteloneapi/setvars.sh
+
+# To run the docker image with a graphical user interface (GUI) on Mac OSx
+
+# install XQuartz -- brew cask install xQuartz
+
+# start up xQuartz (may have to start up an app with a right click) and then in the menu bar at the top of the screen, 
+# select XQuartz->Preferences. Go to Security tab and add allow connections from network clients
+
+# reboot Mac system
+
+socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\" &
+
+# Start up xQuartz
+
+# Start up docker image with
+
+docker run -it -e DISPLAY=docker.for.mac.host.internal:0 --entrypoint /bin/bash chapter3
+##### docker run -it -e DISPLAY=host.docker.internal:0 -v /tmp/.X11-unix:/tmp/.X11-unix --entrypoint /bin/bash chapter3
+
+# Now run the GUI with
+
+# advixe_gui
+
+# For Intel Advisor, add --cap-add=SYS_ADMIN --cap-add=SYS_PTRACE to the docker run command.

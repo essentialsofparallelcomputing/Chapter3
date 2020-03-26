@@ -33,7 +33,9 @@
 
 sudo apt-get update && \
 sudo apt-get install -y cmake git vim gcc g++ gfortran software-properties-common \
-             python3 gnuplot-qt valgrind kcachegrind graphviz likwid && \
+             python3 gnuplot-qt valgrind kcachegrind graphviz likwid \
+             mpich libmpich-dev \
+             openmpi-bin openmpi-doc libopenmpi-dev && \
 sudo apt-get clean && \
 sudo rm -rf /var/lib/apt/lists/*
 
@@ -49,6 +51,30 @@ sudo update-alternatives --install /usr/bin/gcc       gcc       /usr/bin/gcc-9 9
                          --slave   /usr/bin/gfortran  gfortran  /usr/bin/gfortran-9 \
                          --slave   /usr/bin/gcov      gcov      /usr/bin/gcov-9
 
-If Software updater prompts, install updated software --> wait ....
+# Installing Intel compiler since it gives the best vectorization across compiler vendors
+pushd /tmp
+wget -q https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
+sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
+sudo rm -f GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
+popd
+
+echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
+echo "deb [trusted=yes arch=amd64] https://repositories.intel.com/graphics/ubuntu bionic main" | sudo tee /etc/apt/sources.list.d/intel-graphics.list
+sudo apt-get update && \
+sudo apt-get install -y \
+             intel-hpckit-getting-started \
+             intel-oneapi-common-vars \
+             intel-oneapi-common-licensing \
+             intel-oneapi-dev-utilities \
+             intel-oneapi-icc \
+             intel-oneapi-ifort \
+             intel-oneapi-advisor && \
+sudo apt-get clean && \
+sudo rm -rf /var/lib/apt/lists/*
+
+# If Software updater prompts, install updated software --> wait ....
+
+source /opt/intel/inteloneapi/setvars.sh
+echo "source /opt/intel/inteloneapi/setvars.sh" >> ${HOME}/.bash_profile
 
 cd Chapter3; #make
