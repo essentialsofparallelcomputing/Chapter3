@@ -1,7 +1,7 @@
 FROM ubuntu:18.04 AS builder
 WORKDIR /project
 RUN apt-get update && \
-    apt-get install -y cmake git vim gcc g++ gfortran software-properties-common \
+    apt-get install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
             python3 gnuplot-qt valgrind kcachegrind graphviz likwid \
             mpich libmpich-dev \
             openmpi-bin openmpi-doc libopenmpi-dev && \
