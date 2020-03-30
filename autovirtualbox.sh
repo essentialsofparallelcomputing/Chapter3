@@ -1,7 +1,7 @@
 #!/bin/sh
 PROJECT_NAME=Chapter3
 GUEST_USERNAME=chapter3
-UBUNTU1804_ISO=${HOME}/Downloads/iso/ubuntu-18.04.2-desktop-amd64.iso
+UBUNTU1804_ISO=${HOME}/Downloads/iso/ubuntu-18.04.4-desktop-amd64.iso
 VM_LOCATION="${HOME}/Virtual VMs"
 VBoxManage createvm --name ${PROJECT_NAME} --ostype Ubuntu_64 --register --basefolder "${VM_LOCATION}"
 VBoxManage modifyvm ${PROJECT_NAME} --memory 8192 --vram 32
