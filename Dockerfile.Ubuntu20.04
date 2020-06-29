@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM ubuntu:20.04 AS builder
 WORKDIR /project
 RUN apt-get update -q && DEBIAN_FRONTEND=noninteractive \
     apt-get install -q -y --no-install-recommends cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
