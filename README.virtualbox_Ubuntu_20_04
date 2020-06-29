@@ -29,7 +29,7 @@
 
 # Need script on guest to execute
 # git clone --recursive https://github.com/essentialsofparallelcomputing/Chapter3.git
-# Run the script Chapter3/README.virtualbox
+# Run the script Chapter3/README.virtualbox_Ubuntu_20_04
 
 sudo apt-get update && \
 sudo apt-get install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
