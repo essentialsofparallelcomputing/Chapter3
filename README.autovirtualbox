@@ -4,7 +4,7 @@
 
 # Download VirtualBox and install
 
-# Download Ubuntu desktop install and save on local disk [ubuntu-18.04.4-desktop-amd64.iso]
+# Download Ubuntu desktop install and save on local disk [ubuntu-20.04-desktop-amd64.iso]
 # Download VBoxGuestAdditions.iso
 # On Mac already at /Applications/VirtualBox.app/Contents/MacOS/VBoxGuestAdditions.iso
 
@@ -32,7 +32,7 @@
 
 # Start Ubuntu virtual machine (Green arrow, start)
 
-# Select iso file saved earlier [ubuntu-18.04.4-desktop-amd64.iso]
+# Select iso file saved earlier [ubuntu-20.04-desktop-amd64.iso]
 
 # Select Install Ubuntu
 
