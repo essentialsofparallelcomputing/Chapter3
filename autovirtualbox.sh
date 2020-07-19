@@ -1,7 +1,7 @@
 #!/bin/sh
 PROJECT_NAME=Chapter3
 GUEST_USERNAME=chapter3
-UBUNTU1804_ISO=${HOME}/Downloads/iso/ubuntu-18.04.4-desktop-amd64.iso
+UBUNTU2004_ISO=${HOME}/Downloads/iso/ubuntu-20.04-desktop-amd64.iso
 VM_LOCATION="${HOME}/Virtual VMs"
 VBoxManage createvm --name ${PROJECT_NAME} --ostype Ubuntu_64 --register --basefolder "${VM_LOCATION}"
 VBoxManage modifyvm ${PROJECT_NAME} --memory 8192 --vram 32
@@ -19,7 +19,7 @@ VBoxManage createmedium --filename "${VM_LOCATION}"/${PROJECT_NAME}/${PROJECT_NA
 
 VBoxManage storagectl ${PROJECT_NAME} --name IDE --add ide
 VBoxManage storageattach ${PROJECT_NAME} --storagectl IDE --port 0 --device 0 --type dvddrive \
-   --medium ${UBUNTU1804_ISO}
+   --medium ${UBUNTU2004_ISO}
 
 VBoxManage storagectl ${PROJECT_NAME} --name SATA --add SATA --controller IntelAhci --hostiocache on
 VBoxManage storageattach ${PROJECT_NAME} --storagectl SATA --port 0 --device 0 --type hdd \
@@ -30,7 +30,7 @@ VBoxManage unattended install ${PROJECT_NAME} \
    --password=${GUEST_USERNAME} \
    --country=US \
    --time-zone=MST \
-   --iso=${UBUNTU1804_ISO} \
+   --iso=${UBUNTU2004_ISO} \
    --install-additions \
    --hostname=${PROJECT_NAME}.virtualbox.org \
    --start-vm=gui
