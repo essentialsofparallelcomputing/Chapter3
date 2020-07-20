@@ -31,8 +31,9 @@
 # git clone --recursive https://github.com/essentialsofparallelcomputing/Chapter3.git
 # Run the script Chapter3/README.virtualbox
 
-sudo apt-get update && DEBIAN_FRONTEND=noninteractive \
-sudo apt-get install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
+DEBIAN_FRONTEND=noninteractive
+sudo apt-get -qq update && \
+sudo apt-get -qq install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
              python3 gnuplot-qt valgrind kcachegrind graphviz likwid \
              mpich libmpich-dev \
              openmpi-bin openmpi-doc libopenmpi-dev && \
@@ -40,8 +41,8 @@ sudo apt-get clean && \
 sudo rm -rf /var/lib/apt/lists/*
 
 # Installing latest GCC compiler (version 10) for best vectorization
-sudo apt-get update && \
-sudo apt-get install -y gcc-10 g++-10 gfortran-10 && \
+sudo apt-get -qq update && \
+sudo apt-get -qq install -y gcc-10 g++-10 gfortran-10 && \
 sudo apt-get clean && \
 sudo rm -rf /var/lib/apt/lists/*
 
@@ -59,8 +60,8 @@ popd
 
 echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
 echo "deb [trusted=yes arch=amd64] https://repositories.intel.com/graphics/ubuntu bionic main" | sudo tee /etc/apt/sources.list.d/intel-graphics.list
-sudo apt-get update && \
-sudo apt-get install -y \
+sudo apt-get -qq update && \
+sudo apt-get -qq install -y \
              intel-hpckit-getting-started \
              intel-oneapi-common-vars \
              intel-oneapi-common-licensing \
