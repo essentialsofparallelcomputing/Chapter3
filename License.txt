@@ -1,7 +1,7 @@
 # Chapter 3 Performance limits and profiling
 This is from Chapter 3 of the Parallel and High Performance Computing, Robey and Zamora,
 Manning Publications. The book may be obtained at
-   http://www.manning.com/?a_aid=ParallelComputingRobey
+   https://www.manning.com/books/parallel-and-high-performance-computing?a_aid=ParallelComputingRobey
 
 Copyright 2019-2020 Robert Robey, Yuliana Zamora, and Manning Publications
 Emails: brobey@earthlink.net, yzamora215@gmail.com
