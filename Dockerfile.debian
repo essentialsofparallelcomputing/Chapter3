@@ -8,6 +8,7 @@ RUN apt-get -qq update && \
             openmpi-bin openmpi-doc libopenmpi-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
 # Installing latest GCC compiler (version 10)
 RUN apt-get -qq update && \

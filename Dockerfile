@@ -8,6 +8,7 @@ RUN apt-get -qq update && \
             openmpi-bin openmpi-doc libopenmpi-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
 # Installing latest GCC compiler (version 10)
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test
@@ -43,7 +44,7 @@ RUN apt-get -qq update && \
 
 # Needed libraries for Intel Advisor graphics user interface
 RUN apt-get -qq update && \
-    apt-get install -y libgtk2.0-0 libxxf86vm1 libsm6 libnss3 libnss3 libx11-xcb1 libxtst6 \
+    apt-get -qq install -y libgtk2.0-0 libxxf86vm1 libsm6 libnss3 libnss3 libx11-xcb1 libxtst6 \
             libasound2 libatk-bridge2.0-0 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
