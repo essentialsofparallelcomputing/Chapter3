@@ -3,12 +3,23 @@ WORKDIR /project
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update && \
     apt-get -qq install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
-            python3 gnuplot-qt valgrind kcachegrind graphviz likwid \
+            gnuplot-qt valgrind kcachegrind graphviz likwid \
             mpich libmpich-dev \
             openmpi-bin openmpi-doc libopenmpi-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-RUN ln -s /usr/bin/python3 /usr/bin/python
+
+RUN wget  https://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
+RUN tar xf Python-2.7.6.tgz
+RUN cd Python-2.7.6
+RUN ./configure
+RUN make
+RUN make install
+
+#RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 30
+#RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 20
+
+#RUN update-alternatives --set python /usr/bin/python2
 
 # Installing latest GCC compiler (version 10)
 RUN apt-get -qq update && \
