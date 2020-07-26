@@ -76,6 +76,6 @@ RUN git clone --recursive https://github.com/essentialsofparallelcomputing/Chapt
 WORKDIR /home/chapter3
 
 WORKDIR /home/chapter3/Chapter3
-#RUN make
+RUN make
 
 ENTRYPOINT ["bash"]
