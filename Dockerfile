@@ -3,7 +3,7 @@ WORKDIR /project
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update && \
     apt-get -qq install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
-            python2 python3 gnuplot-qt valgrind kcachegrind graphviz likwid ghostscript \
+            python2 python3 gnuplot-qt valgrind kcachegrind graphviz likwid gv \
             mpich libmpich-dev \
             openmpi-bin openmpi-doc libopenmpi-dev && \
     apt-get clean && \
