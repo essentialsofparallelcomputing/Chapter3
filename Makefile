@@ -1,4 +1,5 @@
-All: Stream ERT CloverLeaf_Serial CloverLeaf_OpenMP Plotting
+#All: Stream ERT CloverLeaf_Serial CloverLeaf_OpenMP Plotting
+All: ERT
 
 Stream: STREAM/stream_c.exe
 
