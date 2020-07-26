@@ -7,7 +7,7 @@ STREAM/stream_c.exe:
 	   sed -e 's/CFLAGS = -O2 -fopenmp/CFLAGS = -O3 -march=native -fstrict-aliasing -ftree-vectorize -fopenmp -DSTREAM_ARRAY_SIZE=80000000 -DNTIMES=20/' \
 	       -e 's/gcc-4.9/${CC}/' Makefile.orig > Makefile && ls && make stream_c.exe && ./stream_c.exe
 
-ERT: cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/MacLaptop2017
+ERT: cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/Ubuntu2004
 
 cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/Ubuntu2004:
 	cd cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0 && \
