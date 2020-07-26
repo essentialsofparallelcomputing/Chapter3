@@ -7,9 +7,6 @@ ERT_KERNEL  kernel1
 
 ERT_MPI         True
 ERT_MPI_CFLAGS     
-#ERT_MPI_CFLAGS     -I/usr/lib/x86_64-linux-gnu/openmpi/include/openmpi -I/usr/lib/x86_64-linux-gnu/openmpi/include
-#ERT_MPI_CFLAGS     -I/usr/include/x86_64-linux-gnu/mpich
-#ERT_MPI_LDFLAGS   -pthread -L/usr/lib/x86_64-linux-gnu/openmpi/lib -lmpi
 ERT_MPI_LDFLAGS   
 
 ERT_OPENMP         True
@@ -19,9 +16,9 @@ ERT_OPENMP_LDFLAGS -fopenmp
 ERT_FLOPS   1,2,4,8,16
 ERT_ALIGN   64
 
-ERT_CC      mpicc
+ERT_CC      mpiCC
 ERT_CFLAGS  -O3 -march=native -fstrict-aliasing -ftree-vectorize
-ERT_LD      mpicc
+ERT_LD      mpiCC
 ERT_LDFLAGS
 ERT_LDLIBS
 
