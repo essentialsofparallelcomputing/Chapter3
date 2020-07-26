@@ -9,9 +9,9 @@ STREAM/stream_c.exe:
 
 ERT: cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/MacLaptop2017
 
-cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/MacLaptop2017:
+cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/Ubuntu2004:
 	cd cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0 && \
-	   cp ../../roofline_toolkit/MacLaptop2017 Config && ./ert Config/MacLaptop2017
+	   cp ../../roofline_toolkit/Ubuntu2004 Config && ./ert Config/Ubuntu2004
 
 CloverLeaf_Serial: CloverLeaf/CloverLeaf_Serial/clover_leaf
 
