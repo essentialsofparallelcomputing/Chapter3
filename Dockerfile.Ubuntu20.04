@@ -47,18 +47,18 @@ RUN apt-get -qq update && \
 #    apt-get clean && \
 #    rm -rf /var/lib/apt/lists/*
 
-#RUN apt-get -qq update && \
-#    apt-get -qq install -y python2 && \
-#    apt-get clean && \
-#    rm -rf /var/lib/apt/lists/*
+RUN apt-get -qq update && \
+    apt-get -qq install -y python2 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 #RUN bash ~/Downloads/Anaconda2-2019.10-Linux-x86_64.sh
 #RUN wget https://repo.anaconda.com/archive/Anaconda2-2019.10-Linux-x86_64.sh
 #RUN bash Anaconda2-2019.10-Linux-x86_64.sh -b
 
-#RUN ls -l /usr/bin/python* #/usr/local/bin/python*
+RUN ls -l /usr/bin/python* #/usr/local/bin/python*
 
-#RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 30
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 30
 #                        --slave /usr/bin/pip pip /usr/bin/pip2
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 20
 #                        --slave /usr/bin/pip pip /usr/bin/pip3
