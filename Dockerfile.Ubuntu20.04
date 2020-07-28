@@ -3,11 +3,14 @@ WORKDIR /project
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update && \
     apt-get -qq install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
-            python2-pip gnuplot-qt valgrind kcachegrind graphviz likwid gv pypy-enum34 localehelper \
+            python2 gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
             mpich libmpich-dev \
             openmpi-bin openmpi-doc libopenmpi-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
+
+#RUN curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
+#RUN python2 get-pip.py
 
 # Installing latest GCC compiler (version 10)
 #RUN apt-get -qq update && \
@@ -17,12 +20,21 @@ RUN apt-get -qq update && \
 
 RUN locale-gen "en_US.UTF-8" && dpkg-reconfigure locales && update-locale LANG=en_US.UTF-8
 
+RUN ls /usr/bin/python* #/usr/bin/pip*
+
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 30
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 20
+RUN python --version
+
 # We are installing both OpenMPI and MPICH. We could use the update alternatives to switch between them
 #RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 90\
 #                        --slave /usr/bin/g++ g++ /usr/bin/g++-10\
 #                        --slave /usr/bin/gfortran gfortran /usr/bin/gfortran-10\
 #                        --slave /usr/bin/gcov gcov /usr/bin/gcov-10
 
+SHELL ["/bin/bash", "-c"]
+
+RUN groupadd chapter3 && useradd -m -s /bin/bash -g chapter3 chapter3
 
 WORKDIR /home/chapter3
 RUN chown -R chapter3:chapter3 /home/chapter3

@@ -3,7 +3,7 @@ WORKDIR /project
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update && \
     apt-get -qq install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
-            python-pip gnuplot-qt valgrind kcachegrind graphviz likwid gv pypy-enum34 localehelper \
+            python-pip gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
             mpich libmpich-dev \
             openmpi-bin openmpi-doc libopenmpi-dev && \
     apt-get clean && \
@@ -16,13 +16,14 @@ RUN apt-get -qq update && \
 #    apt-get clean && \
 #    rm -rf /var/lib/apt/lists/*
 
-RUN locale -a
-RUN locale-gen "en_US.UTF-8"
-RUN dpkg-reconfigure locales
-RUN update-locale LANG=en_US.UTF-8
+RUN locale-gen "en_US.UTF-8" && dpkg-reconfigure locales && update-locale LANG=en_US.UTF-8
+
+RUN ls /usr/bin/python* /usr/bin/pip*
+RUN python --version
 
 #RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 30
 #RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 20
+#RUN python --version
 
 #RUN update-alternatives --set python /usr/bin/python2
 
