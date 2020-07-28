@@ -3,17 +3,17 @@ WORKDIR /project
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update && \
     apt-get -qq install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
-            python2 gnuplot-qt valgrind kcachegrind graphviz likwid gv curl pipenv pypy-enum34 \
-            mpich libmpich-dev \
+            gnuplot-qt valgrind kcachegrind graphviz likwid gv curl \
+#            mpich libmpich-dev \
             openmpi-bin openmpi-doc libopenmpi-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Installing latest GCC compiler (version 10)
-RUN apt-get -qq update && \
-    apt-get -qq install -y gcc-10 g++-10 gfortran-10 && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+#RUN apt-get -qq update && \
+#    apt-get -qq install -y gcc-10 g++-10 gfortran-10 && \
+#    apt-get clean && \
+#    rm -rf /var/lib/apt/lists/*
 
 # We are installing both OpenMPI and MPICH. We could use the update alternatives to switch between them
 #RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 90\
@@ -47,13 +47,26 @@ RUN apt-get -qq update && \
 #    apt-get clean && \
 #    rm -rf /var/lib/apt/lists/*
 
-RUN curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
-RUN python2 get-pip.py
+#RUN apt-get -qq update && \
+#    apt-get -qq install -y python2 && \
+#    apt-get clean && \
+#    rm -rf /var/lib/apt/lists/*
 
-#RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 30\
+#RUN bash ~/Downloads/Anaconda2-2019.10-Linux-x86_64.sh
+#RUN wget https://repo.anaconda.com/archive/Anaconda2-2019.10-Linux-x86_64.sh
+#RUN bash Anaconda2-2019.10-Linux-x86_64.sh -b
+
+#RUN ls -l /usr/bin/python* #/usr/local/bin/python*
+
+#RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 30
 #                        --slave /usr/bin/pip pip /usr/bin/pip2
-#RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 20\
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 20
 #                        --slave /usr/bin/pip pip /usr/bin/pip3
+
+#RUN curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
+#RUN python get-pip.py
+
+#RUN pip3 install numpy scipy matplotlib jupyter
 
 #RUN update-alternatives --set python /usr/bin/python2
 
@@ -76,6 +89,6 @@ RUN git clone --recursive https://github.com/essentialsofparallelcomputing/Chapt
 WORKDIR /home/chapter3
 
 WORKDIR /home/chapter3/Chapter3
-RUN make
+#RUN make
 
 ENTRYPOINT ["bash"]
