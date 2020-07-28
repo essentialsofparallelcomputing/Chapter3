@@ -13,7 +13,7 @@ ERT_OPENMP         True
 ERT_OPENMP_CFLAGS  -fopenmp
 ERT_OPENMP_LDFLAGS -fopenmp
 
-ERT_FLOPS   1,2,4,8,16
+ERT_FLOPS   1 #,2,4,8,16
 ERT_ALIGN   64
 
 ERT_CC      mpiCC

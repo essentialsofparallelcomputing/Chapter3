@@ -3,7 +3,7 @@ WORKDIR /project
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update && \
     apt-get -qq install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
-            python2 python3 pip2 pip3 gnuplot-qt valgrind kcachegrind graphviz likwid gv pypy-enum34 \
+            python-pip gnuplot-qt valgrind kcachegrind graphviz likwid gv pypy-enum34 localehelper \
             mpich libmpich-dev \
             openmpi-bin openmpi-doc libopenmpi-dev && \
     apt-get clean && \
@@ -16,8 +16,13 @@ RUN apt-get -qq update && \
 #    apt-get clean && \
 #    rm -rf /var/lib/apt/lists/*
 
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 30
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 20
+RUN locale -a
+RUN locale-gen "en_US.UTF-8"
+RUN dpkg-reconfigure locales
+RUN update-locale LANG=en_US.UTF-8
+
+#RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 30
+#RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 20
 
 #RUN update-alternatives --set python /usr/bin/python2
 
@@ -62,6 +67,7 @@ RUN chown -R chapter3:chapter3 /home/chapter3
 USER chapter3
 
 RUN git clone --recursive https://github.com/essentialsofparallelcomputing/Chapter3.git
+ENV LANG='en_US.UTF-8'
 
 WORKDIR /home/chapter3
 
