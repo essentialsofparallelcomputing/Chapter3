@@ -34,11 +34,19 @@
 DEBIAN_FRONTEND=noninteractive
 sudo apt-get -qq update && \
 sudo apt-get -qq install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
-             python3 gnuplot-qt valgrind kcachegrind graphviz likwid \
+             python2 curl gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
              mpich libmpich-dev \
              openmpi-bin openmpi-doc libopenmpi-dev && \
 sudo apt-get clean && \
 sudo rm -rf /var/lib/apt/lists/*
+
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 30
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 20
+
+RUN curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py && \
+      python2 get-pip.py && pip2 install enum34
+
+RUN locale-gen "en_US.UTF-8" && dpkg-reconfigure locales && update-locale LANG=en_US.UTF-8
 
 # Installing latest GCC compiler (version 10) for best vectorization
 sudo apt-get -qq update && \
@@ -52,11 +60,11 @@ sudo update-alternatives --install /usr/bin/gcc       gcc       /usr/bin/gcc-10 
                          --slave   /usr/bin/gcov      gcov      /usr/bin/gcov-10
 
 # Installing Intel compiler since it gives the best vectorization across compiler vendors
-pushd /tmp
+#pushd /tmp
 wget -q https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
 sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
 sudo rm -f GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
-popd
+#popd
 
 echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
 echo "deb [trusted=yes arch=amd64] https://repositories.intel.com/graphics/ubuntu bionic main" | sudo tee /etc/apt/sources.list.d/intel-graphics.list
@@ -76,5 +84,7 @@ sudo rm -rf /var/lib/apt/lists/*
 
 source /opt/intel/inteloneapi/setvars.sh
 echo "source /opt/intel/inteloneapi/setvars.sh" >> ${HOME}/.bash_profile
+export LANG='en_US.UTF-8'
+echo "export LANG='en_US.UTF-8'" >> ${HOME}/.bash_profile
 
 cd Chapter3; #make

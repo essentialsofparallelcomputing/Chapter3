@@ -3,22 +3,25 @@ WORKDIR /project
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update && \
     apt-get -qq install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
-            python2 python3 gnuplot-qt valgrind kcachegrind graphviz likwid gv pypy-enum34 \
+            python2 curl gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
             mpich libmpich-dev \
             openmpi-bin openmpi-doc libopenmpi-dev && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-# Installing latest GCC compiler (version 10)
-RUN apt-get -qq update && \
-    apt-get -qq install -y gcc-10 g++-10 gfortran-10 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 30
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 20
 
-#RUN update-alternatives --set python /usr/bin/python2
+RUN curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py && \
+      python2 get-pip.py && pip2 install enum34
+
+RUN sed -i -e '/en_US.UTF-8/s/^#//' /etc/locale.gen && locale-gen
+
+# Installing latest GCC compiler (version 10)
+RUN apt-get -qq update && \
+    apt-get -qq install -y gcc-10 g++-10 gfortran-10 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # We are installing both OpenMPI and MPICH. We could use the update alternatives to switch between them
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 90\
@@ -61,6 +64,7 @@ RUN chown -R chapter3:chapter3 /home/chapter3
 USER chapter3
 
 RUN git clone --recursive https://github.com/essentialsofparallelcomputing/Chapter3.git
+ENV LANG='en_US.UTF-8'
 
 WORKDIR /home/chapter3
 
