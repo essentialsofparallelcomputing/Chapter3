@@ -34,10 +34,11 @@ Plotting: nersc-roofline/Plotting/plot_roofline.py.orig
 nersc-roofline/Plotting/plot_roofline.py.orig:
 	cd nersc-roofline/Plotting && cp data.txt data.txt.orig && \
  	   sed -e '/memroofs/s/828.758/21000.0/' -e '/mem_roof_names/s/HBM/L1/' data.txt.orig > data.txt && \
-	   cp plot_roofline.py plot_roofline.py.orig && sed -e '/plt.show/s/^/#/' plot_roofline.py.orig > plot_roofline.py
+	   cp plot_roofline.py plot_roofline.py.orig && sed -e '/plt.show/s/^/#/' plot_roofline.py.orig > plot_roofline.py && \
+	   python plot_roofline.py
 
 Jupyter:
-	jupyter notebook HardwarePlatformCharacterization.ipynb
+	cd JupyterNotebook # && jupyter notebook HardwarePlatformCharaterization.ipynb
 
 clean:
 	cd STREAM && git clean -fd && git checkout Makefile
