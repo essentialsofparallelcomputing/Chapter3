@@ -3,7 +3,7 @@ WORKDIR /project
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update && \
     apt-get -qq install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
-            python2 curl gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
+            python2 curl python-tk gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
             mpich libmpich-dev \
             openmpi-bin openmpi-doc libopenmpi-dev && \
     apt-get clean && \
@@ -13,7 +13,7 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 30
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 20
 
 RUN curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py && \
-      python2 get-pip.py && pip2 install enum34
+      python2 get-pip.py && pip2 install enum34 numpy Jupyter matplotlib
 
 RUN sed -i -e '/en_US.UTF-8/s/^#//' /etc/locale.gen && locale-gen
 

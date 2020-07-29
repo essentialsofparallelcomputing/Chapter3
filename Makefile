@@ -1,4 +1,5 @@
 All: Stream ERT CloverLeaf_Serial CloverLeaf_OpenMP Plotting Jupyter
+.PHONY: Stream ERT CloverLeaf_Serial CloverLeaf_OpenMP Plotting Jupyter
 
 Stream: STREAM/stream_c.exe
 
