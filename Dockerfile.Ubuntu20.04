@@ -13,7 +13,7 @@ RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 30
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 20
 
 RUN curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py && \
-      python2 get-pip.py && pip2 install enum34
+      python2 get-pip.py && pip2 install enum34 numpy Jupyter
 
 RUN locale-gen "en_US.UTF-8" && dpkg-reconfigure locales && update-locale LANG=en_US.UTF-8
 
