@@ -3,14 +3,13 @@ WORKDIR /project
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update && \
     apt-get -qq install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
-            python-pip gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
+            python-pip python-tk gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
             mpich libmpich-dev \
             openmpi-bin openmpi-doc libopenmpi-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-            #python-pip python-tk gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
 
-#RUN pip2 install numpy Jupyter matplotlib
+RUN pip2 install numpy Jupyter matplotlib
 
 RUN locale-gen "en_US.UTF-8" && dpkg-reconfigure locales && update-locale LANG=en_US.UTF-8
 
