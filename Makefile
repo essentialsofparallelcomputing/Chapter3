@@ -13,7 +13,8 @@ ERT: cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/Ubuntu2004
 cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/Ubuntu2004:
 	cd cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0 && \
 	   cp ../../roofline_toolkit/Ubuntu2004 Config && \
-	   2to3 ert Python Scripts \
+	   2to3 -w -f all -f buffer -f idioms -f set_literal -f ws_comma ert Python Scripts ;
+	   sed -e -i '1,$s!msec_med = msec_med[len(msec_med)/2]!msec_med = msec_med[len(msec_med)//2]!' && \
 	   ./ert Config/Ubuntu2004 # && gs Results.Ubuntu2004/Run.001/roofline.ps
 
 CloverLeaf_Serial: CloverLeaf/CloverLeaf_Serial/clover_leaf
