@@ -4,10 +4,13 @@
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get -qq update && \
 sudo apt-get -qq install -y cmake make git vim gcc g++ gfortran wget gnupg-agent \
-   python-pip python-tk gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
+   2to3 python3-pip gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
    mpich libmpich-dev openmpi-bin openmpi-doc libopenmpi-dev
 
-sudo pip2 install numpy Jupyter matplotlib
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 30 \
+                         --slave   /usr/bin/pip    pip    /usr/bin/pip3
+
+sudo pip install numpy Jupyter matplotlib
 
 sudo locale-gen "en_US.UTF-8" && sudo dpkg-reconfigure locales && sudo update-locale LANG=en_US.UTF-8
 

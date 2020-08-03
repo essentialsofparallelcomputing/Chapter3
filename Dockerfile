@@ -7,10 +7,8 @@ RUN apt-get -qq update && \
             mpich libmpich-dev \
             openmpi-bin openmpi-doc libopenmpi-dev
 
-RUN ls -l /usr/bin/p*
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 30 \
                         --slave   /usr/bin/pip    pip    /usr/bin/pip3
-RUN ls -l /usr/bin/p*
 
 # Installing Anaconda would supply these as well
 RUN pip install numpy Jupyter matplotlib
