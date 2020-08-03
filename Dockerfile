@@ -3,11 +3,17 @@ WORKDIR /project
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update && \
     apt-get -qq install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
-            python-pip python-tk gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
+            2to3 python3-pip gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
             mpich libmpich-dev \
             openmpi-bin openmpi-doc libopenmpi-dev
 
-RUN pip2 install numpy Jupyter matplotlib
+RUN ls -l /usr/bin/p*
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 30 \
+                        --slave   /usr/bin/pip    pip    /usr/bin/pip3
+RUN ls -l /usr/bin/p*
+
+# Installing Anaconda would supply these as well
+RUN pip install numpy Jupyter matplotlib
 
 RUN locale-gen "en_US.UTF-8" && dpkg-reconfigure locales && update-locale LANG=en_US.UTF-8
 

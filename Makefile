@@ -24,14 +24,14 @@ CloverLeaf_Serial: CloverLeaf/CloverLeaf_Serial/clover_leaf
 CloverLeaf/CloverLeaf_Serial/clover_leaf:
 	cd CloverLeaf/CloverLeaf_Serial && \
 	     make COMPILER=GNU C_MPI_COMPILER_GNU=${CC} IEEE=1 C_OPTIONS='-g -O3 -fno-tree-vectorize' OPTIONS='-g -O3 -fno-tree-vectorize' && \
-	     cp InputDecks/clover_bm8_short.in clover.in && valgrind --tool=callgrind -v ./clover_leaf && qcachegrind
+	     cp InputDecks/clover_bm4_short.in clover.in && valgrind --tool=callgrind -v ./clover_leaf && qcachegrind
 
 CloverLeaf_OpenMP: CloverLeaf/CloverLeaf_OpenMP/clover_leaf
 
 CloverLeaf/CloverLeaf_OpenMP/clover_leaf:
 	cd CloverLeaf/CloverLeaf_OpenMP && \
 	     make COMPILER=GNU C_MPI_COMPILER_GNU=${CC} IEEE=1 C_OPTIONS='-g -march=native' OPTIONS='-g -march=native' && \
-	     cp InputDecks/clover_bm8_short.in clover.in && likwid-perfctr -C 0-4 -g MEM_DP ./clover_leaf && \
+	     cp InputDecks/clover_bm4_short.in clover.in && likwid-perfctr -C 0-4 -g MEM_DP ./clover_leaf && \
 	     advixe-cl --collect roofline --project-dir ./advixe_proj -- ./clover_leaf && \
 	     advixe-gui ./advixe_proj
 
