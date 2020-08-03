@@ -4,7 +4,7 @@
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get -qq update && \
 sudo apt-get -qq install -y cmake make git vim gcc g++ gfortran wget gnupg-agent \
-   2to3 python3-pip gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
+   2to3 python3-pip gnuplot-qt valgrind kcachegrind graphviz likwid gv \
    mpich libmpich-dev openmpi-bin openmpi-doc libopenmpi-dev
 
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 30 \
@@ -12,8 +12,6 @@ sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 30 \
 
 # Installing minimun set of python packages to keep image small. Anaconda would supply these as well
 sudo pip install numpy Jupyter matplotlib
-
-sudo locale-gen "en_US.UTF-8" && sudo dpkg-reconfigure locales && sudo update-locale LANG=en_US.UTF-8
 
 sudo apt-get -qq install -y gcc-10 g++-10 gfortran-10
 
