@@ -3,14 +3,15 @@ WORKDIR /project
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq update && \
     apt-get -qq install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
-            2to3 curl gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
+            2to3 pipsi curl gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
             mpich libmpich-dev \
             openmpi-bin openmpi-doc libopenmpi-dev
 
 RUN ls -l /usr/bin/p*
 
-#RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 30
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 20
+
+RUN pip install anaconda3
 
 #RUN curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py && \
 #      python2 get-pip.py && pip2 install enum34 numpy Jupyter matplotlib

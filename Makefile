@@ -40,7 +40,8 @@ Plotting: nersc-roofline/Plotting/plot_roofline.py.orig
 nersc-roofline/Plotting/plot_roofline.py.orig:
 	cd nersc-roofline/Plotting && cp data.txt data.txt.orig && \
  	   sed -e '/memroofs/s/828.758/21000.0/' -e '/mem_roof_names/s/HBM/L1/' data.txt.orig > data.txt && \
-	   cp plot_roofline.py plot_roofline.py.orig && sed -e '/plt.show/s/^/#/' plot_roofline.py.orig > plot_roofline.py && \
+	   2to3 -w -f all -f buffer -f idioms -f set_literal -f ws_comma plot_roofline.py ; \
+	   sed -i -e '/plt.show/s/^/#/' plot_roofline.py && \
 	   python plot_roofline.py
 
 Jupyter:
