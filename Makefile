@@ -25,7 +25,7 @@ CloverLeaf/CloverLeaf_Serial/clover_leaf:
 	cd CloverLeaf/CloverLeaf_Serial && \
 	     make COMPILER=GNU C_MPI_COMPILER_GNU=${CC} IEEE=1 C_OPTIONS='-g -O3 -fno-tree-vectorize' OPTIONS='-g -O3 -fno-tree-vectorize' && \
 	     cp InputDecks/clover_bm4_short.in clover.in && sed -i -e '/end_step/s/87/4/' clover.in && \
-	     valgrind --tool=callgrind -v ./clover_leaf && qcachegrind
+	     valgrind --tool=callgrind -v ./clover_leaf # && qcachegrind
 
 CloverLeaf_OpenMP: CloverLeaf/CloverLeaf_OpenMP/clover_leaf
 
