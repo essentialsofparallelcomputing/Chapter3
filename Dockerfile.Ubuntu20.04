@@ -7,6 +7,8 @@ RUN apt-get -qq update && \
             mpich libmpich-dev \
             openmpi-bin openmpi-doc libopenmpi-dev
 
+RUN ls -l /usr/bin/p*
+
 #RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 30
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 20
 
