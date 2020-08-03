@@ -10,6 +10,7 @@ sudo apt-get -qq install -y cmake make git vim gcc g++ gfortran wget gnupg-agent
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 30 \
                          --slave   /usr/bin/pip    pip    /usr/bin/pip3
 
+# Installing minimun set of python packages to keep image small. Anaconda would supply these as well
 sudo pip install numpy Jupyter matplotlib
 
 sudo locale-gen "en_US.UTF-8" && sudo dpkg-reconfigure locales && sudo update-locale LANG=en_US.UTF-8

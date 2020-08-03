@@ -10,7 +10,7 @@ RUN apt-get -qq update && \
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 30 \
                         --slave   /usr/bin/pip    pip    /usr/bin/pip3
 
-# Installing Anaconda would supply these as well
+# Installing minimun set of python packages to keep image small. Anaconda would supply these as well
 RUN pip install numpy Jupyter matplotlib
 
 RUN sed -i -e '/en_US.UTF-8/s/^#//' /etc/locale.gen && locale-gen

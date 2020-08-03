@@ -34,25 +34,26 @@
 DEBIAN_FRONTEND=noninteractive
 sudo apt-get -qq update && \
 sudo apt-get -qq install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
-             python2 curl gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
+             2to3 python3-pip gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
              mpich libmpich-dev \
-             openmpi-bin openmpi-doc libopenmpi-dev && \
-sudo apt-get clean && \
-sudo rm -rf /var/lib/apt/lists/*
+             openmpi-bin openmpi-doc libopenmpi-dev
 
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python2 30
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 20
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 30 \
+                        --slave   /usr/bin/pip    pip    /usr/bin/pip3
 
-RUN curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py && \
-      python2 get-pip.py && pip2 install enum34
+# Installing minimun set of python packages to keep image small. Anaconda would supply these as well
+RUN pip install numpy Jupyter matplotlib
 
 RUN locale-gen "en_US.UTF-8" && dpkg-reconfigure locales && update-locale LANG=en_US.UTF-8
 
 # Installing latest GCC compiler (version 10) for best vectorization
 sudo apt-get -qq update && \
-sudo apt-get -qq install -y gcc-10 g++-10 gfortran-10 && \
-sudo apt-get clean && \
-sudo rm -rf /var/lib/apt/lists/*
+sudo apt-get -qq install -y gcc-10 g++-10 gfortran-10
+
+sudo update-alternatives --install /usr/bin/gcc       gcc       /usr/bin/gcc-9 80 \
+                         --slave   /usr/bin/g++       g++       /usr/bin/g++-9 \
+                         --slave   /usr/bin/gfortran  gfortran  /usr/bin/gfortran-9 \
+                         --slave   /usr/bin/gcov      gcov      /usr/bin/gcov-9
 
 sudo update-alternatives --install /usr/bin/gcc       gcc       /usr/bin/gcc-10 90 \
                          --slave   /usr/bin/g++       g++       /usr/bin/g++-10 \
@@ -76,7 +77,8 @@ sudo apt-get -qq install -y \
              intel-oneapi-dev-utilities \
              intel-oneapi-icc \
              intel-oneapi-ifort \
-             intel-oneapi-advisor && \
+             intel-oneapi-advisor
+
 sudo apt-get clean && \
 sudo rm -rf /var/lib/apt/lists/*
 
