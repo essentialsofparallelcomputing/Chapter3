@@ -13,7 +13,7 @@ ERT: cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/Ubuntu2004
 cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/Ubuntu2004:
 	cd cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0 && \
 	   cp ../../roofline_toolkit/Ubuntu2004 Config && \
-	   2to3 -w -f all -f buffer -f idioms -f set_literal -f ws_comma ert Python Scripts ; \
+	   2to3 -w ert Python Scripts ; \
 	   sed -i -e 's!len(msec_med)/2!len(msec_med)//2!' Scripts/preprocess.py && \
 	   sed -i -e "s!subprocess.PIPE!subprocess.PIPE, encoding='utf8'!" Python/ert_utils.py && \
 	   sed -i -e "/META_DATA/s!\] ==!\].strip() ==!" -e '/len(lines.i/s!\]) ==!\].strip()) ==!' Python/ert_core.py && \
@@ -42,7 +42,7 @@ Plotting: nersc-roofline/Plotting/plot_roofline.py.orig
 nersc-roofline/Plotting/plot_roofline.py.orig:
 	cd nersc-roofline/Plotting && cp data.txt data.txt.orig && \
  	   sed -e '/memroofs/s/828.758/21000.0/' -e '/mem_roof_names/s/HBM/L1/' data.txt.orig > data.txt && \
-	   2to3 -w -f all -f buffer -f idioms -f set_literal -f ws_comma plot_roofline.py ; \
+	   2to3 -w plot_roofline.py ; \
 	   sed -i -e '/plt.show/s/^/#/' plot_roofline.py && \
 	   python plot_roofline.py
 
