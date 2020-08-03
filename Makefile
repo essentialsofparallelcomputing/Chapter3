@@ -8,16 +8,16 @@ STREAM/stream_c.exe:
 	   sed -e 's/CFLAGS = -O2 -fopenmp/CFLAGS = -O3 -march=native -fstrict-aliasing -ftree-vectorize -fopenmp -DSTREAM_ARRAY_SIZE=80000000 -DNTIMES=20/' \
 	       -e 's/gcc-4.9/${CC}/' Makefile.orig > Makefile && ls && make stream_c.exe && ./stream_c.exe
 
-ERT: cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/Ubuntu2004
+ERT: cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/Quick
 
-cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/Ubuntu2004:
+cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/Quick:
 	cd cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0 && \
-	   cp ../../roofline_toolkit/Ubuntu2004 Config && \
+	   cp ../../roofline_toolkit/Quick Config && \
 	   2to3 -w ert Python Scripts ; \
 	   sed -i -e 's!len(msec_med)/2!len(msec_med)//2!' Scripts/preprocess.py && \
 	   sed -i -e "s!subprocess.PIPE!subprocess.PIPE, encoding='utf8'!" Python/ert_utils.py && \
 	   sed -i -e "/META_DATA/s!\] ==!\].strip() ==!" -e '/len(lines.i/s!\]) ==!\].strip()) ==!' Python/ert_core.py && \
-	   ./ert Config/Ubuntu2004 # && gs Results.Ubuntu2004/Run.001/roofline.ps
+	   ./ert Config/Quick # && gs Results.Quick/Run.001/roofline.ps
 
 CloverLeaf_Serial: CloverLeaf/CloverLeaf_Serial/clover_leaf
 
@@ -51,7 +51,7 @@ Jupyter:
 
 clean:
 	cd STREAM && git clean -fd && git checkout Makefile
-	cd cs-roofline-toolkit && rm -f Empirical_Roofline_Tool-1.1.0/Config/Ubuntu2004 && \
+	cd cs-roofline-toolkit && rm -f Empirical_Roofline_Tool-1.1.0/Config/Quick && \
 	   git checkout Empirical_Roofline_Tool-1.1.0/*/*.py Empirical_Roofline_Tool-1.1.0/ert
 	cd CloverLeaf/CloverLeaf_Serial && git clean -fd && git checkout clover.in
 	cd CloverLeaf/CloverLeaf_OpenMP && git clean -fd && git checkout clover.in
