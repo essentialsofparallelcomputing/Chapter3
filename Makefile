@@ -31,7 +31,7 @@ CloverLeaf_OpenMP: CloverLeaf/CloverLeaf_OpenMP/clover_leaf
 
 CloverLeaf/CloverLeaf_OpenMP/clover_leaf:
 	cd CloverLeaf/CloverLeaf_OpenMP && \
-	     make COMPILER=GNU C_MPI_COMPILER_GNU=${CC} IEEE=1 C_OPTIONS='-g -march=native' OPTIONS='-g -march=native' && \
+	     make COMPILER=INTEL IEEE=1  FLAGS_INTEL=-O3 -no-prec-div -xhost"i && \
 	     cp InputDecks/clover_bm4_short.in clover.in && sed -i -e '/end_step/s/87/10/' clover.in && ./clover_leaf && \
 	     advixe-cl --collect roofline --project-dir ./advixe_proj -- ./clover_leaf && \
 	     advixe-gui ./advixe_proj
@@ -48,7 +48,7 @@ nersc-roofline/Plotting/plot_roofline.py.orig:
 	   python plot_roofline.py
 
 Jupyter:
-	cd JupyterNotebook # && jupyter notebook HardwarePlatformCharaterization.ipynb
+	cd JupyterNotebook && jupyter notebook HardwarePlatformCharaterization.ipynb
 
 clean:
 	cd STREAM && git clean -fd && git checkout Makefile

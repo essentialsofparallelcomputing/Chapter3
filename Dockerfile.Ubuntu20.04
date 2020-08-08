@@ -58,6 +58,8 @@ RUN chown -R chapter3:chapter3 /home/chapter3
 USER chapter3
 ENV LANG='en_US.UTF-8'
 ENV PATH=${PATH}:/opt/intel/oneapi/advisor/2021.1-beta08/bin64
+ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/intel/oneapi/compiler/2021.1-beta08/linux/compiler/lib/intel64_lin
+ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/intel/oneapi/compiler/2021.1-beta08/linux/lib
 
 RUN git clone --recursive https://github.com/essentialsofparallelcomputing/Chapter3.git
 

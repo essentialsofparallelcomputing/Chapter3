@@ -83,5 +83,7 @@ echo "source /opt/intel/inteloneapi/setvars.sh" >> ${HOME}/.bash_profile
 export LANG='en_US.UTF-8'
 echo "export LANG='en_US.UTF-8'" >> ${HOME}/.bash_profile
 echo "export PATH=${PATH}:/opt/intel/oneapi/advisor/2021.1-beta08/bin64" >>${HOME}/.bash_profile
+echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/intel/oneapi/compiler/2021.1-beta08/linux/compiler/lib/intel64_lin" >>${HOME}/.bash_profile
+echo "LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/intel/oneapi/compiler/2021.1-beta08/linux/lib" >>${HOME}/.bash_profile
 
 cd Chapter3; #make
