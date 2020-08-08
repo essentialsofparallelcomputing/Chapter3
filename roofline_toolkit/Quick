@@ -1,6 +1,6 @@
 # Docker install on Mac Laptop, MPI and OpenMP (4-core Intel Core I7 3.1 GHz)
   
-ERT_RESULTS Results.Ubuntu.01
+ERT_RESULTS Results.Quick
 
 ERT_DRIVER  driver1
 ERT_KERNEL  kernel1

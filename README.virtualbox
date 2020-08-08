@@ -34,20 +34,14 @@
 DEBIAN_FRONTEND=noninteractive
 sudo apt-get -qq update && \
 sudo apt-get -qq install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
-             2to3 python3-pip gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
+             2to3 python3-pip python3-matplotlib python3-numpy jupyter gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
              mpich libmpich-dev \
              openmpi-bin openmpi-doc libopenmpi-dev
 
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 30 \
-                        --slave   /usr/bin/pip    pip    /usr/bin/pip3
-
-# Installing minimun set of python packages to keep image small. Anaconda would supply these as well
-RUN pip install numpy Jupyter matplotlib
-
-RUN locale-gen "en_US.UTF-8" && dpkg-reconfigure locales && update-locale LANG=en_US.UTF-8
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 30 \
+                         --slave   /usr/bin/pip    pip    /usr/bin/pip3
 
 # Installing latest GCC compiler (version 10) for best vectorization
-sudo apt-get -qq update && \
 sudo apt-get -qq install -y gcc-10 g++-10 gfortran-10
 
 sudo update-alternatives --install /usr/bin/gcc       gcc       /usr/bin/gcc-9 80 \
