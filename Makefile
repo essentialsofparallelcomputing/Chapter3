@@ -48,7 +48,7 @@ nersc-roofline/Plotting/plot_roofline.py.orig:
 	   python plot_roofline.py
 
 Jupyter:
-	cd JupyterNotebook && jupyter notebook HardwarePlatformCharaterization.ipynb
+	cd JupyterNotebook && jupyter notebook --ip=0.0.0.0 --port=8080 HardwarePlatformCharaterization.ipynb
 
 clean:
 	cd STREAM && git clean -fd && git checkout Makefile
