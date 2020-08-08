@@ -17,7 +17,7 @@ cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/Quick:
 	   sed -i -e 's!len(msec_med)/2!len(msec_med)//2!' Scripts/preprocess.py && \
 	   sed -i -e "s!subprocess.PIPE!subprocess.PIPE, encoding='utf8'!" Python/ert_utils.py && \
 	   sed -i -e "/META_DATA/s!\] ==!\].strip() ==!" -e '/len(lines.i/s!\]) ==!\].strip()) ==!' Python/ert_core.py && \
-	   ./ert Config/Quick  && gs -c "<</Orientation 3>> setpagedevice" Results.Quick/Run.001/roofline.ps
+	   ./ert Config/Quick  && ps2pdf -dEPSCrop Results.Quick/Run.001/roofline.ps && xpdf roofline.pdf
 
 CloverLeaf_Serial: CloverLeaf/CloverLeaf_Serial/clover_leaf
 
