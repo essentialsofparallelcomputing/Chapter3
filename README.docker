@@ -13,44 +13,42 @@
 # First soft link the version of the docker builds that you want. The
 # default is the VNC build to support graphical user interfaces
 
-   ln -s dockervnc.sh docker_run.sh
-   ln -s Dockerfile.vnc Dockerfile
+   ln -s dockervnc.sh docker_run.sh # dockerbash.sh for simple text-only container
+   ln -s Dockerfile.vnc Dockerfile # Dockerfile.Ubuntu18.04 Dockerfile.Ubuntu20.04 Dockerfile.debian
 
 # For the pre-built docker image, run
 
-   docker run -p 4000:80 -it --entrypoint /bin/bash essentialsofparallelcomputing/chapter3
+   ./docker_run.sh
 
 # Alternatively, build an image locally and run it 
 
    docker build -t chapter3 .
 
-   docker run -it --entrypoint /bin/bash chapter3
+   docker run -it --entrypoint /bin/bash chapter3 # for text-only container
 
-# For Intel products, you will have to source the following script to set the environment
-#   once you are in the container
+   # vnc container is more complicated
+   docker run -d --init --rm \
+     --name chapter3 --hostname chapter3 \
+     --shm-size 2g \
+     -p 6080:6080 -p 5900:5900 -p 2222:22 \
+     --env VNCPASS=chapter3 \
+     --env RESOLUT=2560x1080 \
+     --env HOST_UID= \
+     --env DOCKER_LANG=en_US \
+     --env DOCKER_TIMEZONE=America/Denver \
+     -v $HOME/.ssh:$CONTAINER_HOME/.ssh \
+     -v $HOME/.gitconfig:$CONTAINER_HOME/.gitconfig_host \
+     -w /home/chapter3/Chapter3 \
+     --security-opt seccomp=unconfined --cap-add=SYS_PTRACE \
+     chapter3 \
+     "startvnc.sh >> $CONTAINER_HOME/.log/vnc.log"
 
-   source /opt/intel/inteloneapi/setvars.sh
+# The paths have been set for the Intel products.
 
 # To run the docker image with a graphical user interface (GUI) on Mac OSx
 
 # install XQuartz -- brew cask install xQuartz
 
-# start up xQuartz (may have to start up an app with a right click) and then in the menu bar at the top of the screen, 
-# select XQuartz->Preferences. Go to Security tab and add allow connections from network clients
-
-# reboot Mac system
-
-socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\" &
-
-# Start up xQuartz
-
-# Start up docker image with
-
-docker run -it -e DISPLAY=docker.for.mac.host.internal:0 --entrypoint /bin/bash chapter3
-##### docker run -it -e DISPLAY=host.docker.internal:0 -v /tmp/.X11-unix:/tmp/.X11-unix --entrypoint /bin/bash chapter3
-
 # Now run the GUI with
 
 # advixe_gui
-
-# For Intel Advisor, add --cap-add=SYS_ADMIN --cap-add=SYS_PTRACE to the docker run command.

@@ -31,7 +31,7 @@ CloverLeaf_OpenMP: CloverLeaf/CloverLeaf_OpenMP/clover_leaf
 
 CloverLeaf/CloverLeaf_OpenMP/clover_leaf:
 	cd CloverLeaf/CloverLeaf_OpenMP && \
-	     make COMPILER=INTEL IEEE=1  FLAGS_INTEL=-O3 -no-prec-div -xhost"i && \
+	     make COMPILER=INTEL IEEE=1  OMP_INTEL="-qopenmp" FLAGS_INTEL="-g -O3 -no-prec-div -xhost" && \
 	     cp InputDecks/clover_bm4_short.in clover.in && sed -i -e '/end_step/s/87/10/' clover.in && ./clover_leaf && \
 	     advixe-cl --collect roofline --project-dir ./advixe_proj -- ./clover_leaf && \
 	     advixe-gui ./advixe_proj
