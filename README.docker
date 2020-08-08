@@ -1,5 +1,5 @@
 # This docker build sets up the following software
-#    GCC, G++, GFortran 9.0 compilers
+#    GCC, G++, GFortran 10.0 compilers
 #    Intel C, C++, and Fortran compilers
 #    Intel Advisor (Vectorization)
 #    Cachegrind and valgrind
@@ -9,6 +9,12 @@
 # To run the example in docker, do the following
 
 # Download the docker install file for your system
+
+# First soft link the version of the docker builds that you want. The
+# default is the VNC build to support graphical user interfaces
+
+   ln -s dockervnc.sh docker_run.sh
+   ln -s Dockerfile.vnc Dockerfile
 
 # For the pre-built docker image, run
 

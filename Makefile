@@ -17,7 +17,7 @@ cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/Quick:
 	   sed -i -e 's!len(msec_med)/2!len(msec_med)//2!' Scripts/preprocess.py && \
 	   sed -i -e "s!subprocess.PIPE!subprocess.PIPE, encoding='utf8'!" Python/ert_utils.py && \
 	   sed -i -e "/META_DATA/s!\] ==!\].strip() ==!" -e '/len(lines.i/s!\]) ==!\].strip()) ==!' Python/ert_core.py && \
-	   ./ert Config/Quick  && ps2pdf -dEPSCrop Results.Quick/Run.001/roofline.ps && xpdf roofline.pdf
+	   ./ert Config/Quick  && ps2pdf Results.Quick/Run.001/roofline.ps && xpdf roofline.pdf
 
 CloverLeaf_Serial: CloverLeaf/CloverLeaf_Serial/clover_leaf
 
@@ -25,7 +25,7 @@ CloverLeaf/CloverLeaf_Serial/clover_leaf:
 	cd CloverLeaf/CloverLeaf_Serial && \
 	     make COMPILER=GNU C_MPI_COMPILER_GNU=${CC} IEEE=1 C_OPTIONS='-g -O3 -fno-tree-vectorize' OPTIONS='-g -O3 -fno-tree-vectorize' && \
 	     cp InputDecks/clover_bm4_short.in clover.in && sed -i -e '/end_step/s/87/4/' clover.in && \
-	     valgrind --tool=callgrind -v ./clover_leaf # && kcachegrind
+	     valgrind --tool=callgrind -v ./clover_leaf && kcachegrind
 
 CloverLeaf_OpenMP: CloverLeaf/CloverLeaf_OpenMP/clover_leaf
 
@@ -33,9 +33,9 @@ CloverLeaf/CloverLeaf_OpenMP/clover_leaf:
 	cd CloverLeaf/CloverLeaf_OpenMP && \
 	     make COMPILER=GNU C_MPI_COMPILER_GNU=${CC} IEEE=1 C_OPTIONS='-g -march=native' OPTIONS='-g -march=native' && \
 	     cp InputDecks/clover_bm4_short.in clover.in && sed -i -e '/end_step/s/87/10/' clover.in && \
-	     ./clover_leaf # && likwid-perfctr -C 0-4 -g MEM_DP ./clover_leaf && \
-	     #advixe-cl --collect roofline --project-dir ./advixe_proj -- ./clover_leaf && \
-	     #advixe-gui ./advixe_proj
+	     ./clover_leaf && likwid-perfctr -C 0-4 -g MEM_DP ./clover_leaf && \
+	     advixe-cl --collect roofline --project-dir ./advixe_proj -- ./clover_leaf && \
+	     advixe-gui ./advixe_proj
 
 Plotting: nersc-roofline/Plotting/plot_roofline.py.orig
 

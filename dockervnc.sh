@@ -22,8 +22,8 @@ docker run -d --init --rm \
   --env VNCPASS=$PASSWORD_RANDOM \
   --env RESOLUT=2560x1080 \
   --env HOST_UID= \
-  --env DOCKER_LANG=en_US
-  --env DOCKER_TIMEZONE=America/Denver
+  --env DOCKER_LANG=en_US \
+  --env DOCKER_TIMEZONE=America/Denver \
   $VOLUME_LIST \
   -w $CONTAINER_HOME/Chapter3 \
   --security-opt seccomp=unconfined --cap-add=SYS_PTRACE \
