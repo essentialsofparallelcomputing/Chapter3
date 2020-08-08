@@ -57,9 +57,10 @@ RUN groupadd chapter3 && useradd -m -s /bin/bash -g chapter3 chapter3
 WORKDIR /home/chapter3
 RUN chown -R chapter3:chapter3 /home/chapter3
 USER chapter3
+ENV LANG='en_US.UTF-8'
+ENV PATH=${PATH}:/opt/intel/oneapi/advisor/2021.1-beta08/bin64
 
 RUN git clone --recursive https://github.com/essentialsofparallelcomputing/Chapter3.git
-ENV LANG='en_US.UTF-8'
 
 WORKDIR /home/chapter3
 
