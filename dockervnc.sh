@@ -27,12 +27,17 @@ docker run -d --init --rm \
   $CONTAINER_IMAGE_NAME \
   "startvnc.sh >> $CONTAINER_HOME/.log/vnc.log"
 
-echo "USE web browser with URL:"
-echo "    http://localhost:$WEB_PORT/vnc.html?resize=downscale&autoconnect=1&password=$PASSWORD_RANDOM"
-echo ""
-echo "VNC Viewers"
-echo "   connect to localhost:$VNC_PORT with password $PASSWORD_RANDOM"
-echo ""
-echo "You can also log into the container using the command"
-echo "    ssh -X -p $SSH_PORT $CONTAINER_USER@localhost -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
-echo "with an authorized key in $HOME/.ssh/authorized_keys."
+if [ "$?" == "0" ]; then
+  echo "USE web browser with URL:"
+  echo "    http://localhost:$WEB_PORT/vnc.html?resize=downscale&autoconnect=1&password=$PASSWORD_RANDOM"
+  echo ""
+  echo "VNC Viewers"
+  echo "   connect to localhost:$VNC_PORT with password $PASSWORD_RANDOM"
+  echo ""
+  echo "You can also log into the container using the command"
+  echo "    ssh -X -p $SSH_PORT $CONTAINER_USER@localhost -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+  echo "with an authorized key in $HOME/.ssh/authorized_keys."
+
+else
+  echo "docker run failed with STATUS $?"
+fi

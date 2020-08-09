@@ -40,10 +40,10 @@ CloverLeaf/CloverLeaf_OpenMP/clover_leaf:
 Plotting: nersc-roofline/Plotting/plot_roofline.py.orig
 
 nersc-roofline/Plotting/plot_roofline.py.orig:
-	cd nersc-roofline/Plotting && cp data.txt data.txt.orig && \
- 	   sed -i -e '/memroofs/s/828.758/21000.0/' -e '/mem_roof_names/s/HBM/L1/' data.txt && \
-	   2to3 -w plot_roofline.py && python plot_roofline.py data.txt
-	   #sed -i -e '/plt.show/s/^/#/' plot_roofline.py && \
+	cd nersc-roofline/Plotting && \
+	   2to3 -w plot_roofline.py && \
+	   sed -i -e '/plt.show/s/^#//' plot_roofline.py && \
+	   python plot_roofline.py data.txt
 
 Jupyter:
 	cd JupyterNotebook && jupyter notebook --ip=0.0.0.0 --port=8080 HardwarePlatformCharaterization.ipynb
