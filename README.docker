@@ -43,11 +43,21 @@
      chapter3 \
      "startvnc.sh >> $CONTAINER_HOME/.log/vnc.log"
 
-# The paths have been set for the Intel products.
+# The paths have been set for the Intel products with the Intel setvars script
+
+  source /opt/intel/oneapi/setvars.sh
 
 # To run the docker image with a graphical user interface (GUI) on Mac OSx
 
 # install XQuartz -- brew cask install xQuartz
+
+# VNC viewers
+#  Enhanced TightVNC Viewer package (SSVNC) http://www.karlrunge.com/x11vnc/ssvnc.html
+#     http://realvnc.com/download/viewer -- Linux, Mac and Windows
+#     http://www.tightvnc.com -- Linux, Mac and Windows
+#     http://www.ultravnc.com/
+# Linux: vncviewer
+# MAC: Command-K in Finder and vnc://localhost:$VNC_PORT or vnc://localhost:$VNC_PORT in the Safari Browser
 
 # Now run the GUI with
 

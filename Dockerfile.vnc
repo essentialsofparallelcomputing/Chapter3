@@ -28,8 +28,6 @@ ENV LANG=$DOCKER_LANG.UTF-8 \
 
 WORKDIR /tmp
 
-ARG DEBIAN_FRONTEND=noninteractive
-
 # Install some required system tools and packages for X Windows and ssh
 # Also remove the message regarding unminimize
 RUN apt-get update && \
@@ -107,7 +105,7 @@ RUN apt-get update && \
     apt-get -y autoremove && \
     ldconfig
 
-
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get -qq install -y cmake git gcc g++ gfortran wget gnupg-agent \
             2to3 python3-pip python3-matplotlib python3-numpy jupyter gnuplot-qt \
             valgrind kcachegrind graphviz likwid kmod gv imagemagick \
