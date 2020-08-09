@@ -33,19 +33,17 @@ CloverLeaf/CloverLeaf_OpenMP/clover_leaf:
 	cd CloverLeaf/CloverLeaf_OpenMP && \
 	     make COMPILER=INTEL IEEE=1  OMP_INTEL="-qopenmp" FLAGS_INTEL="-g -O3 -no-prec-div -xhost" && \
 	     cp InputDecks/clover_bm4_short.in clover.in && sed -i -e '/end_step/s/87/10/' clover.in && ./clover_leaf && \
+	     likwid-perfctr -C 0-4 -g MEM_DP ./clover_leaf && \
 	     advixe-cl --collect roofline --project-dir ./advixe_proj -- ./clover_leaf && \
 	     advixe-gui ./advixe_proj
-	     # hardware counters not available in docker container
-	     #likwid-perfctr -C 0-4 -g MEM_DP ./clover_leaf && \
 
 Plotting: nersc-roofline/Plotting/plot_roofline.py.orig
 
 nersc-roofline/Plotting/plot_roofline.py.orig:
 	cd nersc-roofline/Plotting && cp data.txt data.txt.orig && \
- 	   sed -e '/memroofs/s/828.758/21000.0/' -e '/mem_roof_names/s/HBM/L1/' data.txt.orig > data.txt && \
-	   2to3 -w plot_roofline.py ; \
-	   sed -i -e '/plt.show/s/^/#/' plot_roofline.py && \
-	   python plot_roofline.py
+ 	   sed -i -e '/memroofs/s/828.758/21000.0/' -e '/mem_roof_names/s/HBM/L1/' data.txt && \
+	   2to3 -w plot_roofline.py && python plot_roofline.py data.txt
+	   #sed -i -e '/plt.show/s/^/#/' plot_roofline.py && \
 
 Jupyter:
 	cd JupyterNotebook && jupyter notebook --ip=0.0.0.0 --port=8080 HardwarePlatformCharaterization.ipynb
