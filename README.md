@@ -76,6 +76,9 @@ Requirements for Performance limits and profiling:
          a. git clone https://github.com/RRZE-HPC/likwid.git
          b. cd likwid
          c. edit config.mk
+              set PREFIX to your install director
+              change ACCESSMODE from accessdaemon to perf_event for containers (no MSR access)
+              change BUILDFREQ from true to false for user space installs
          d. make
          e. make install
       2. Enable MSR with ‘sudo modprobe msr’

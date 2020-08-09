@@ -34,9 +34,10 @@
 DEBIAN_FRONTEND=noninteractive
 sudo apt-get -qq update && \
 sudo apt-get -qq install -y cmake git vim gcc g++ gfortran software-properties-common wget gnupg-agent \
-             2to3 python3-pip python3-matplotlib python3-numpy jupyter gnuplot-qt valgrind kcachegrind graphviz likwid gv localehelper \
+             2to3 python3-pip python3-matplotlib python3-numpy jupyter gnuplot-qt valgrind kcachegrind graphviz gv localehelper \
              mpich libmpich-dev \
              openmpi-bin openmpi-doc libopenmpi-dev
+# likwid installed manually in container because msr is not accessible
 
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 30 \
                          --slave   /usr/bin/pip    pip    /usr/bin/pip3
@@ -72,6 +73,11 @@ sudo apt-get -qq install -y \
              intel-oneapi-icc \
              intel-oneapi-ifort \
              intel-oneapi-advisor
+
+sudo wget http://ftp.fau.de/pub/likwid/likwid-5.0.1.tar.gz && tar -xzvf likwid-5.0.1.tar.gz && \
+     cd likwid-5.0.1 && sed -i -e '/ACCESSMODE/s!accessdaemon!perf_event!' \
+        -e '/PREFIX/s!/usr/local!/usr!' -e '/BUILDFREQ/s/true/false/' config.mk && \
+     make && make install && cd .. && rm -rf likwid-5.0.1
 
 sudo apt-get clean && \
 sudo rm -rf /var/lib/apt/lists/*

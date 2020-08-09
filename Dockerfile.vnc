@@ -152,7 +152,6 @@ RUN apt-get -qq update && \
 RUN apt-get -qq install -y libgtk2.0-0 libxxf86vm1 libsm6 libnss3 libnss3 libx11-xcb1 libxtst6 \
             libasound2 libatk-bridge2.0-0
 
-# Also disable likwid-setFreq when building with user permissions (-e '/BUILDFREQ/s/true/false/')
 RUN wget http://ftp.fau.de/pub/likwid/likwid-5.0.1.tar.gz && tar -xzvf likwid-5.0.1.tar.gz && \
     cd likwid-5.0.1 && sed -i -e '/ACCESSMODE/s!accessdaemon!perf_event!' \
        -e '/PREFIX/s!/usr/local!/usr!' -e '/BUILDFREQ/s/true/false/' config.mk && \
