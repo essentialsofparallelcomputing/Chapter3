@@ -157,6 +157,8 @@ RUN wget http://ftp.fau.de/pub/likwid/likwid-5.0.1.tar.gz && tar -xzvf likwid-5.
        -e '/PREFIX/s!/usr/local!/usr!' -e '/BUILDFREQ/s/true/false/' config.mk && \
     make && make install && cd .. && rm -rf likwid-5.0.1
 
+RUN sysctl -w kernel.perf_event_paranoid=-1
+
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ########################################################

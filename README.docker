@@ -55,7 +55,6 @@
 #  Enhanced TightVNC Viewer package (SSVNC) http://www.karlrunge.com/x11vnc/ssvnc.html
 #     http://realvnc.com/download/viewer -- Linux, Mac and Windows
 #     http://www.tightvnc.com -- Linux, Mac and Windows
-#     http://www.ultravnc.com/
 # Linux: vncviewer
 # MAC: Command-K in Finder and vnc://localhost:$VNC_PORT or vnc://localhost:$VNC_PORT in the Safari Browser
 
