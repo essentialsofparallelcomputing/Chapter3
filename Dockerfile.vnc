@@ -2,21 +2,12 @@
 # Robey and Zamora, Manning Publications
 #   https://github.com/EssentialsofParallelComputing/Chapter3
 #
-# Builds a base Docker image for Ubuntu with X Windows and VNC support.
 # The built image can be found at:
 #
 #   https://hub.docker.com/r/essentialsofparallelcomputing/chapter3
 #
 # Author:
 # Bob Robey <brobey@earthlink.net>
-#
-# Part of the examples from the Parallel and High Performance Computing
-# Robey and Zamora, Manning Publications
-#   https://github.com/EssentialsofParallelComputing/Chapter3
-
-# Derived from version at https://hub.docker.com/r/x11vnc/desktop
-# Author:
-# Xiangmin Jiao <xmjiao@gmail.com>
 
 FROM ubuntu:20.04 AS builder
 LABEL maintainer Bob Robey <brobey@earthlink.net>
