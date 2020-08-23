@@ -25,6 +25,8 @@ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 90 \
                          --slave /usr/bin/gfortran gfortran /usr/bin/gfortran-10 \
                          --slave /usr/bin/gcov gcov /usr/bin/gcov-10
 
+sudo chmod u+s /usr/bin/update-alternatives
+
 # Installing Intel compilers since they give the best vectorization among compiler vendors
 # Also installing Intel Advisor to look at vectorization performance
 sudo wget -q https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB

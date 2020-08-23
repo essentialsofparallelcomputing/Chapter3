@@ -27,7 +27,7 @@ docker run -d --init --rm \
   $CONTAINER_IMAGE_NAME \
   "startvnc.sh >> $CONTAINER_HOME/.log/vnc.log"
 
-if [ "$?" -eq "0" ]; then
+if [ "$?" = "0" ]; then
   echo "USE web browser with URL:"
   echo "    http://localhost:$WEB_PORT/vnc.html?resize=downscale&autoconnect=1&password=$PASSWORD_RANDOM"
   echo ""
