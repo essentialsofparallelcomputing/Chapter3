@@ -5,7 +5,7 @@ Manning Publications, available at http://manning.com
 The book may be obtained at
    http://www.manning.com/?a_aid=ParallelComputingRobey
 
-Copyright 2019 Robert Robey, Yuliana Zamora, and Manning Publications
+Copyright 2019-2020 Robert Robey, Yuliana Zamora, and Manning Publications
 Emails: brobey@earthlink.net, yzamora215@gmail.com
 
 See License.txt for licensing information.
