@@ -1,8 +1,8 @@
 #!/bin/sh
 # Sets up Ubuntu 20.04 from bare-bones installation 
 # Comment out what you don't need or run line-by-line, manually
-export DEBIAN_FRONTEND=noninteractive
 sudo apt-get -qq update && \
+DEBIAN_FRONTEND=noninteractive \
 sudo apt-get -qq install -y cmake make git vim gcc g++ gfortran wget gnupg-agent \
    2to3 python3-pip python3-matplotlib python3-numpy jupyter gnuplot-qt valgrind kcachegrind graphviz likwid gv \
    mpich libmpich-dev openmpi-bin openmpi-doc libopenmpi-dev
