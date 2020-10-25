@@ -223,8 +223,7 @@ ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/intel/oneapi/compiler/latest/linux/c
 ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/intel/oneapi/compiler/latest/linux/lib
 ENV DISPLAY :0
 ENV NVIDIA_VISIBLE_DEVICES all
-ENV NVIDIA_DRIVER_CAPABILITIES display,graphics
-
+ENV NVIDIA_DRIVER_CAPABILITIES display,graphics,utility
 
 RUN git clone --recursive https://github.com/essentialsofparallelcomputing/Chapter3.git
 
