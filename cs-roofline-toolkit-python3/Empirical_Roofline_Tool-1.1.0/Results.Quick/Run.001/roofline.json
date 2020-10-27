@@ -1,0 +1,84 @@
+{
+   "empirical": {
+      "metadata": {},
+      "gflops": {
+         "data": [
+            [
+               "FP64 GFLOPs",
+               10.35
+            ]
+         ],
+         "metadata": {
+            "": [
+               "META_DATA",
+               "FLOPS          1",
+               "MPI_PROCS      2",
+               "OPENMP_THREADS 2",
+               "ERT_VERSION  1.1.0",
+               "HOSTNAME  ('34df40d557e7', [], ['172.17.0.2'])",
+               "UNAME  uname_result(system='Linux', node='34df40d557e7', release='5.4.0-52-generic', version='#57-Ubuntu SMP Thu Oct 15 10:57:00 UTC 2020', machine='x86_64', processor='x86_64')",
+               "TIMESTAMP_DATA  1603825752.1370964",
+               "CONFIG  {'ERT_RESULTS': ['Results.Quick'], 'ERT_DRIVER': ['driver1'], 'ERT_KERNEL': ['kernel1'], 'ERT_MPI': ['True'], 'ERT_MPI_CFLAGS': [], 'ERT_MPI_LDFLAGS': [], 'ERT_OPENMP': ['True'], 'ERT_OPENMP_CFLAGS': ['-fopenmp'], 'ERT_OPENMP_LDFLAGS': ['-fopenmp'], 'ERT_FLOPS': ['1'], 'ERT_ALIGN': ['64'], 'ERT_CC': ['mpiCC'], 'ERT_CFLAGS': ['-O3', '-march=native', '-fstrict-aliasing', '-ftree-vectorize'], 'ERT_LD': ['mpiCC'], 'ERT_LDFLAGS': [], 'ERT_LDLIBS': [], 'ERT_RUN': ['export', 'OMP_NUM_THREADS=ERT_OPENMP_THREADS;', 'mpirun', '-np', 'ERT_MPI_PROCS', 'ERT_CODE'], 'ERT_PROCS_THREADS': ['1-4'], 'ERT_MPI_PROCS': ['2'], 'ERT_OPENMP_THREADS': ['2'], 'ERT_NUM_EXPERIMENTS': ['3'], 'ERT_MEMORY_MAX': ['1073741824'], 'ERT_WORKING_SET_MIN': ['1'], 'ERT_TRIALS_MIN': ['1'], 'ERT_GNUPLOT': ['gnuplot'], 'ERT_GPU': [False], 'ERT_HIP': [False], 'ERT_PRECISION': ['FP64'], 'ERT_OCL': [False], 'ERT_WSS_MULT': [1.1]}",
+               "TIMESTAMP_DATA  1603825772.3503387",
+               "TIMESTAMP_DATA  1603825792.6463795"
+            ],
+            "TIMESTAMP_DB": 1603825813.2506552
+         }
+      },
+      "gbytes": {
+         "data": [
+            [
+               "L1",
+               165.59
+            ],
+            [
+               "L2",
+               111.31
+            ],
+            [
+               "L3",
+               83.64
+            ],
+            [
+               "L4",
+               51.19
+            ],
+            [
+               "L5",
+               41.44
+            ],
+            [
+               "L6",
+               34.94
+            ],
+            [
+               "DRAM",
+               26.11
+            ]
+         ],
+         "metadata": {
+            "": [
+               "FLOPS          1",
+               "MPI_PROCS      2",
+               "OPENMP_THREADS 2",
+               "ERT_VERSION  1.1.0",
+               "HOSTNAME  ('34df40d557e7', [], ['172.17.0.2'])",
+               "UNAME  uname_result(system='Linux', node='34df40d557e7', release='5.4.0-52-generic', version='#57-Ubuntu SMP Thu Oct 15 10:57:00 UTC 2020', machine='x86_64', processor='x86_64')",
+               "TIMESTAMP_DATA  1603825752.1370964",
+               "CONFIG  {'ERT_RESULTS': ['Results.Quick'], 'ERT_DRIVER': ['driver1'], 'ERT_KERNEL': ['kernel1'], 'ERT_MPI': ['True'], 'ERT_MPI_CFLAGS': [], 'ERT_MPI_LDFLAGS': [], 'ERT_OPENMP': ['True'], 'ERT_OPENMP_CFLAGS': ['-fopenmp'], 'ERT_OPENMP_LDFLAGS': ['-fopenmp'], 'ERT_FLOPS': ['1'], 'ERT_ALIGN': ['64'], 'ERT_CC': ['mpiCC'], 'ERT_CFLAGS': ['-O3', '-march=native', '-fstrict-aliasing', '-ftree-vectorize'], 'ERT_LD': ['mpiCC'], 'ERT_LDFLAGS': [], 'ERT_LDLIBS': [], 'ERT_RUN': ['export', 'OMP_NUM_THREADS=ERT_OPENMP_THREADS;', 'mpirun', '-np', 'ERT_MPI_PROCS', 'ERT_CODE'], 'ERT_PROCS_THREADS': ['1-4'], 'ERT_MPI_PROCS': ['2'], 'ERT_OPENMP_THREADS': ['2'], 'ERT_NUM_EXPERIMENTS': ['3'], 'ERT_MEMORY_MAX': ['1073741824'], 'ERT_WORKING_SET_MIN': ['1'], 'ERT_TRIALS_MIN': ['1'], 'ERT_GNUPLOT': ['gnuplot'], 'ERT_GPU': [False], 'ERT_HIP': [False], 'ERT_PRECISION': ['FP64'], 'ERT_OCL': [False], 'ERT_WSS_MULT': [1.1]}",
+               "TIMESTAMP_DATA  1603825772.3503387",
+               "TIMESTAMP_DATA  1603825792.6463795"
+            ],
+            "TIMESTAMP_DB": 1603825813.2507296
+         }
+      }
+   },
+   "spec": {
+      "gflops": {
+         "data": []
+      },
+      "gbytes": {
+         "data": []
+      }
+   }
+}

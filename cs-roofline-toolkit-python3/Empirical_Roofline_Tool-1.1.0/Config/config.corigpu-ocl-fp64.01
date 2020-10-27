@@ -1,0 +1,39 @@
+# ERT OpenCL configuration for Cori GPU cluster
+# NVIDIA V100 'Volta' GPU
+
+ERT_RESULTS Results.corigpu-ocl-fp64.01
+
+ERT_DRIVER  driver1
+ERT_KERNEL  kernel1.cl
+
+
+#ERT_FLOPS   1,2,64,128,256
+ERT_FLOPS   1,256
+ERT_ALIGN   32
+
+ERT_CC      g++
+ERT_CFLAGS  -O3 -x c++ -std=c++11 -Wno-deprecated-declarations -Wno-ignored-attributes -I/usr/common/software/cuda/10.1.168/include
+
+ERT_LD      g++
+ERT_LDFLAGS 
+ERT_LDLIBS  -L/usr/common/software/cuda/10.1.168/lib64 -lOpenCL
+
+ERT_RUN     srun ./ERT_CODE
+
+# For OpenCL, can only specify one precision
+ERT_PRECISION   FP64
+
+ERT_OCL         True
+#ERT_OCL_SIZES   0:0,163840:1024,163840:512,81920:1024,81920:2048
+ERT_OCL_SIZES   81920:1024,163840:1024,327680:512
+
+ERT_NUM_EXPERIMENTS 1
+
+ERT_MEMORY_MAX 1073741824
+
+ERT_WORKING_SET_MIN 128
+
+ERT_TRIALS_MIN 1
+
+ERT_GNUPLOT gnuplot
+

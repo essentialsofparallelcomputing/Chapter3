@@ -1,0 +1,41 @@
+# Maeve i7-6800K 2 x 6 'Broadway' processors
+
+ERT_RESULTS Results.maeve.lb.gov
+
+ERT_DRIVER  driver1
+ERT_KERNEL  kernel1
+
+ERT_MPI         False
+ERT_MPI_CFLAGS
+ERT_MPI_LDFLAGS
+
+ERT_OPENMP         True
+ERT_OPENMP_CFLAGS  -fopenmp
+ERT_OPENMP_LDFLAGS -fopenmp
+
+ERT_FLOPS   1,2,4,8,16
+ERT_ALIGN   32
+
+ERT_CC      g++
+ERT_CFLAGS  -O3 -funroll-loops -ftree-vectorize -ftree-loop-optimize -ftree-loop-vectorize -faligned-new -msse -msse2 -mssse3 -msse4.1 -msse4.2 -mavx -mavx2 -mfma
+
+ERT_LD      g++
+ERT_LDFLAGS -fopenmp -funroll-loops -ftree-vectorize -ftree-loop-optimize -ftree-loop-vectorize -faligned-new -msse -msse2 -mssse3 -msse4.1 -msse4.2 -mavx -mavx2 -mfma
+ERT_LDLIBS  
+
+ERT_PRECISION FP64
+
+ERT_RUN  export OMP_NUM_THREADS=ERT_OPENMP_THREADS; export OMP_PLACES=threads; export OMP_PROC_BIND=spread; ./ERT_CODE
+
+ERT_PROCS_THREADS  12
+ERT_OPENMP_THREADS 1-12
+
+ERT_NUM_EXPERIMENTS 5
+
+ERT_MEMORY_MAX 1073741824
+
+ERT_WORKING_SET_MIN 1
+
+ERT_TRIALS_MIN 1
+
+ERT_GNUPLOT gnuplot
