@@ -96,6 +96,7 @@ RUN curl -O https://bootstrap.pypa.io/get-pip.py && \
 # Also, fix issue with Shift-Tab not working
 # https://askubuntu.com/questions/839842/vnc-pressing-shift-tab-tab-only
 RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive \
     apt-get install -y libxtst-dev libssl-dev libjpeg-dev && \
     \
     mkdir -p /tmp/x11vnc-0.9.14 && \
@@ -221,9 +222,9 @@ ENV PATH=${PATH}:/opt/intel/oneapi/advisor/latest/bin64
 ENV PATH=${PATH}:/opt/intel/oneapi/compiler/latest/linux/bin/intel64
 ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin
 ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/intel/oneapi/compiler/latest/linux/lib
-ENV DISPLAY :0
-ENV NVIDIA_VISIBLE_DEVICES all
-ENV NVIDIA_DRIVER_CAPABILITIES display,graphics,utility
+ENV DISPLAY=:0
+ENV NVIDIA_VISIBLE_DEVICES=all
+ENV NVIDIA_DRIVER_CAPABILITIES=display,graphics,utility
 
 RUN git clone --recursive https://github.com/essentialsofparallelcomputing/Chapter3.git
 

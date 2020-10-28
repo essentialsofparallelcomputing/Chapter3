@@ -106,9 +106,9 @@ RUN chown -R chapter3:chapter3 /home/chapter3
 USER chapter3
 
 ENV LANG='en_US.UTF-8'
-ENV DISPLAY :0
-ENV NVIDIA_VISIBLE_DEVICES all
-ENV NVIDIA_DRIVER_CAPABILITIES display,graphics,utility
+ENV DISPLAY=:0
+ENV NVIDIA_VISIBLE_DEVICES=all
+ENV NVIDIA_DRIVER_CAPABILITIES=display,graphics,utility
 RUN source /opt/intel/oneapi/setvars.sh
 
 RUN git clone --recursive https://github.com/essentialsofparallelcomputing/Chapter3.git
