@@ -109,7 +109,15 @@ ENV LANG='en_US.UTF-8'
 ENV DISPLAY=:0
 ENV NVIDIA_VISIBLE_DEVICES=all
 ENV NVIDIA_DRIVER_CAPABILITIES=display,graphics,utility
-RUN source /opt/intel/oneapi/setvars.sh
+#RUN source /opt/intel/oneapi/setvars.sh
+# You may want to "source /opt/intel/oneapi/setvars.sh" to get the full set of environment variables
+ENV MANPATH=/opt/intel/oneapi/compiler/latest/documentation/en/man/common:${MAN_PATH}
+ENV LD_LIBRARY_PATH=/opt/intel/oneapi/compiler/latest/linux/lib:/opt/intel/oneapi/compiler/latest/linux/lib/x64:/opt/intel/oneapi/compiler/latest/linux/lib/emu:/opt/intel/oneapi/compiler/latest/linux/lib/oclfpga/linux64/lib:/opt/intel/oneapi/compiler/latest/linux/compiler/lib/intel64_lin:/opt/intel/oneapi/compiler/latest/linux/compiler/lib:${LD_LIBRARY_PATH}
+ENV PATH=/opt/intel/oneapi/compiler/latest/linux/bin/intel64:/opt/intel/oneapi/compiler/latest/linux/bin:/opt/intel/oneapi/compiler/latest/linux/ioc/bin:/opt/intel/oneapi/dev-utilities/latest/bin:/opt/intel/oneapi/advisor/latest/bin64:${PATH}
+ENV ADVISOR_2021_DIR=/opt/intel/oneapi/advisor/2021.1-beta10
+ENV PKG_CONFIG_PATH=/opt/intel/oneapi/advisor/2021.1-beta10/include/pkgconfig/lib64:${PKG_CONFIG_PATH}
+ENV APM=/opt/intel/oneapi/advisor/2021.1-beta10/perfmodels
+ENV PYTHONPATH=/opt/intel/oneapi/advisor/2021.1-beta10/pythonapi:${PYTHONPATH}
 
 RUN git clone --recursive https://github.com/essentialsofparallelcomputing/Chapter3.git
 

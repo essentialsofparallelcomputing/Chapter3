@@ -1,4 +1,4 @@
-# These are instructions to setup a Ubuntu virtual machine for the examples in
+# These are instructions to setup an Ubuntu virtual machine for the examples in
 # this chapter. The first part of the instructions must be done manually. The
 # last half can be done by executing this file as a script as instructed.
 
@@ -45,42 +45,49 @@ sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 30 \
 # Installing latest GCC compiler (version 10) for best vectorization
 sudo apt-get -qq install -y gcc-10 g++-10 gfortran-10
 
-sudo update-alternatives --install /usr/bin/gcc       gcc       /usr/bin/gcc-9 80 \
-                         --slave   /usr/bin/g++       g++       /usr/bin/g++-9 \
-                         --slave   /usr/bin/gfortran  gfortran  /usr/bin/gfortran-9 \
-                         --slave   /usr/bin/gcov      gcov      /usr/bin/gcov-9
+sudo update-alternatives \
+      --install /usr/bin/gcc      gcc      /usr/bin/gcc-9       80 \
+      --slave   /usr/bin/g++      g++      /usr/bin/g++-9          \
+      --slave   /usr/bin/gfortran gfortran /usr/bin/gfortran-9     \
+      --slave   /usr/bin/gcov     gcov     /usr/bin/gcov-9
+sudo update-alternatives \
+      --install /usr/bin/gcc      gcc      /usr/bin/gcc-10      90 \
+      --slave   /usr/bin/g++      g++      /usr/bin/g++-10         \
+      --slave   /usr/bin/gfortran gfortran /usr/bin/gfortran-10    \
+      --slave   /usr/bin/gcov     gcov     /usr/bin/gcov-10
+sudo chmod u+s /usr/bin/update-alternatives
 
-sudo update-alternatives --install /usr/bin/gcc       gcc       /usr/bin/gcc-10 90 \
-                         --slave   /usr/bin/g++       g++       /usr/bin/g++-10 \
-                         --slave   /usr/bin/gfortran  gfortran  /usr/bin/gfortran-10 \
-                         --slave   /usr/bin/gcov      gcov      /usr/bin/gcov-10
-
-# Installing Intel compiler since it gives the best vectorization across compiler vendors
-#pushd /tmp
+# Installing Intel compilers since they give the best vectorization among compiler vendors
+# Also installing Intel Advisor to look at vectorization performance
 wget -q https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
 sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
 sudo rm -f GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
-#popd
-
-echo "deb https://apt.repos.intel.com/oneapi all main" | sudo tee /etc/apt/sources.list.d/oneAPI.list
-echo "deb [trusted=yes arch=amd64] https://repositories.intel.com/graphics/ubuntu bionic main" | sudo tee /etc/apt/sources.list.d/intel-graphics.list
+sudo echo "deb https://apt.repos.intel.com/oneapi all main" >> /etc/apt/sources.list.d/oneAPI.list
+sudo echo "deb [trusted=yes arch=amd64] https://repositories.intel.com/graphics/ubuntu bionic main" >> /etc/apt/sources.list.d/intel-graphics.list
 sudo apt-get -qq update && \
 sudo apt-get -qq install -y \
              intel-hpckit-getting-started \
              intel-oneapi-common-vars \
              intel-oneapi-common-licensing \
              intel-oneapi-dev-utilities \
-             intel-oneapi-icc \
+             intel-oneapi-dpcpp-cpp-compiler-pro \
              intel-oneapi-ifort \
              intel-oneapi-advisor
 
-sudo wget http://ftp.fau.de/pub/likwid/likwid-5.0.1.tar.gz && tar -xzvf likwid-5.0.1.tar.gz && \
-     cd likwid-5.0.1 && sed -i -e '/ACCESSMODE/s!accessdaemon!perf_event!' \
-        -e '/PREFIX/s!/usr/local!/usr!' -e '/BUILDFREQ/s/true/false/' config.mk && \
-     make && make install && cd .. && rm -rf likwid-5.0.1
+# Needed libraries for Intel Advisor graphics user interface
+sudo apt-get -qq install -y libgtk2.0-0 libxxf86vm1 libsm6 libnss3 libnss3 libx11-xcb1 libxtst6 \
+            libasound2 libatk-bridge2.0-0
 
-sudo apt-get clean && \
-sudo rm -rf /var/lib/apt/lists/*
+sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*
+
+# Changing config to install in /usr and to use perf events instead of access daemons to 
+# try and get around permission limitations in a Docker container
+update-alternatives --set gcc /usr/bin/gcc-9
+wget --no-verbose http://ftp.fau.de/pub/likwid/likwid-5.0.1.tar.gz && tar -xzf likwid-5.0.1.tar.gz && \
+    cd likwid-5.0.1 && sed -i -e '/ACCESSMODE/s!accessdaemon!perf_event!' \
+       -e '/PREFIX/s!/usr/local!/usr!' -e '/BUILDFREQ/s/true/false/' config.mk && \
+    make && make install && cd .. && rm -rf likwid-5.0.1
+RUN update-alternatives --set gcc /usr/bin/gcc-10
 
 # If Software updater prompts, install updated software --> wait ....
 
