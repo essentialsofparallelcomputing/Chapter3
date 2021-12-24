@@ -9,6 +9,9 @@ Roofline toolkit
    cd cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0
    cp Config/config.madonna.lbl.gov.01 Config/MacLaptop2017
    edit Config/MacLaptop2017
+   Test mpirun command (Just type 'mpirun') and see if there is any extraneous output; if so, 
+      modify preprocess.py to remove it as in the following sed command:
+      sed -i -e '/for l in os.sys.stdin:/a\ \ l=l.replace("Invalid MIT-MAGIC-COOKIE-1 key","")' Scripts/preprocess.py
    Run the tests with ./ert Config/MacLaptop2017
    View Results.MacLaptop2017/Run.001/roofline.ps
    
