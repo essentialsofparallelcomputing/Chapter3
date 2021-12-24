@@ -48,8 +48,7 @@ Jupyter:
 
 clean:
 	cd STREAM && git clean -fd && git checkout Makefile
-	cd cs-roofline-toolkit && rm -f Empirical_Roofline_Tool-1.1.0/Config/Quick && \
-	   git checkout Empirical_Roofline_Tool-1.1.0/*/*.py Empirical_Roofline_Tool-1.1.0/ert
+	cd cs-roofline-toolkit && rm -f Empirical_Roofline_Tool-1.1.0/Config/Quick && rm -f Empirical_Roofline_Tool-1.1.0/roofline.pdf
 	cd CloverLeaf/CloverLeaf_Serial && git clean -fd && git checkout clover.in
 	cd CloverLeaf/CloverLeaf_OpenMP && git clean -fd && git checkout clover.in
 	cd nersc-roofline && git clean -fd && git checkout Plotting/data.txt Plotting/plot_roofline.py
