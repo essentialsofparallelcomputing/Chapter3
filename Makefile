@@ -11,10 +11,16 @@ STREAM/stream_c.exe:
 ERT: cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/Quick
 
 # Roofline was updated upstream to python 3. Make sure your default python is python3
+# Sed command modifies script to skip over extraneous text before regular output. If
+#   you get different text in the files in the run directory (something like
+#   ./Results.Ubuntu.01/Run.002/FLOPS.001/MPI.0001/OpenMP.0001/try.001) modify the 
+#   preprocess.py file to strip that text instead
 cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/Quick:
 	cd cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0 && \
 	   cp ../../roofline_toolkit/Quick Config && \
+	   sed -i -e '/for l in os.sys.stdin:/a\ \ l=l.replace("Invalid MIT-MAGIC-COOKIE-1 key","")' Scripts/preprocess.py && \
 	   ./ert Config/Quick  && ps2pdf Results.Quick/Run.001/roofline.ps && evince roofline.pdf
+
 
 CloverLeaf_Serial: CloverLeaf/CloverLeaf_Serial/clover_leaf
 
@@ -48,7 +54,8 @@ Jupyter:
 
 clean:
 	cd STREAM && git clean -fd && git checkout Makefile
-	cd cs-roofline-toolkit && rm -f Empirical_Roofline_Tool-1.1.0/Config/Quick && rm -f Empirical_Roofline_Tool-1.1.0/roofline.pdf
+	cd cs-roofline-toolkit && rm -f Empirical_Roofline_Tool-1.1.0/Config/Quick && rm -f Empirical_Roofline_Tool-1.1.0/roofline.pdf && \
+	  git checkout Empirical_Roofline_Tool-1.1.0/Scripts/preprocess.py
 	cd CloverLeaf/CloverLeaf_Serial && git clean -fd && git checkout clover.in
 	cd CloverLeaf/CloverLeaf_OpenMP && git clean -fd && git checkout clover.in
 	cd nersc-roofline && git clean -fd && git checkout Plotting/data.txt Plotting/plot_roofline.py
