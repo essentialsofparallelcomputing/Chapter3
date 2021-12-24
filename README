@@ -2,6 +2,7 @@ The listings 3.1 and 3.2 are just snippets and can't be run
 
 The code in this directory is for command line examples (not listings)
 
+# Roofline toolkit is now updated to python 3
 Roofline toolkit
 
    cd roofline_toolkit

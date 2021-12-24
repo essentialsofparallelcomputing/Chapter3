@@ -10,13 +10,10 @@ STREAM/stream_c.exe:
 
 ERT: cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/Quick
 
+# Roofline was updated upstream to python 3. Make sure your default python is python3
 cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0/Config/Quick:
 	cd cs-roofline-toolkit/Empirical_Roofline_Tool-1.1.0 && \
 	   cp ../../roofline_toolkit/Quick Config && \
-	   2to3 -w ert Python Scripts ; \
-	   sed -i -e 's!len(msec_med)/2!len(msec_med)//2!' Scripts/preprocess.py && \
-	   sed -i -e "s!subprocess.PIPE!subprocess.PIPE, encoding='utf8'!" Python/ert_utils.py && \
-	   sed -i -e "/META_DATA/s!\] ==!\].strip() ==!" -e '/len(lines.i/s!\]) ==!\].strip()) ==!' Python/ert_core.py && \
 	   ./ert Config/Quick  && ps2pdf Results.Quick/Run.001/roofline.ps && evince roofline.pdf
 
 CloverLeaf_Serial: CloverLeaf/CloverLeaf_Serial/clover_leaf
@@ -44,6 +41,7 @@ nersc-roofline/Plotting/plot_roofline.py.orig:
 	   2to3 -w plot_roofline.py && \
 	   sed -i -e '/plt.show/s/^#//' plot_roofline.py && \
 	   python plot_roofline.py data.txt
+
 
 Jupyter:
 	cd JupyterNotebook && jupyter notebook --ip=0.0.0.0 --port=8080 HardwarePlatformCharaterization.ipynb
