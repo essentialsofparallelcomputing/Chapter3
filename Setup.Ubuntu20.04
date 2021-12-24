@@ -32,8 +32,10 @@ sudo chmod u+s /usr/bin/update-alternatives
 wget -q https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
 sudo apt-key add GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
 sudo rm -f GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB
+sudo chmod 777 /etc/apt/sources.list.d/ 
 sudo echo "deb https://apt.repos.intel.com/oneapi all main" >> /etc/apt/sources.list.d/oneAPI.list
 sudo echo "deb [trusted=yes arch=amd64] https://repositories.intel.com/graphics/ubuntu bionic main" >> /etc/apt/sources.list.d/intel-graphics.list
+sudo chmod 755 /etc/apt/sources.list.d/ 
 sudo apt-get -qq update && \
 sudo apt-get -qq install -y \
              intel-hpckit-getting-started \
